@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c00118a831fbe8498e693bd598e2709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: HomeScene
+  Scene: LoginScene
 --- !u!114 &1651134300
 MonoBehaviour:
   m_ObjectHideFlags: 0
