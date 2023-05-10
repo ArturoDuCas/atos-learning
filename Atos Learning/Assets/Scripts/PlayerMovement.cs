@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float gravity;
+    public float gravity = -200.0f;
     public Vector2 velocity;
+    public float maxAcceleration = 10; 
+    public float acceleration = 10; 
+    public float distance = 0; 
     public float jumpVelocity = 20; 
-    public float groundHeight = 0; 
+    public float maxXVelocity = 100;
+    public float groundHeight = -2.5f; 
     public bool isGrounded = false; 
 
     public bool isHoldingJump = false;
-    public float maxJumpTime = 1.0f;
+    public float maxJumpTime = 0.3f;
     public float jumpTime = 0.0f;
 
     public float jumpGroundThreshold = 1;
@@ -56,6 +60,18 @@ public class PlayerMovement : MonoBehaviour
             if (pos.y <= groundHeight) { // Hit the ground
                 pos.y = groundHeight;
                 isGrounded = true;
+            }
+        }
+
+        distance += velocity.x * Time.fixedDeltaTime;
+
+        if (isGrounded) {
+            float velocityRatio = velocity.x / maxXVelocity;
+            acceleration = maxAcceleration * (1 - velocityRatio);
+
+            velocity.x += acceleration * Time.fixedDeltaTime;
+            if (velocity.x > maxXVelocity) {
+                velocity.x = maxXVelocity;
             }
         }
 
