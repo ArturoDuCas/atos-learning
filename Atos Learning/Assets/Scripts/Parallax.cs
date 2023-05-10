@@ -25,8 +25,8 @@ public class Parallax : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x -= realVelocity * Time.fixedDeltaTime;
 
-        if(pos.x <= -20.0f) {
-            pos.x = 20.0f;
+        if(pos.x <= -18.0f) {
+            pos.x = 18.0f;
         }
 
         transform.position = pos;
