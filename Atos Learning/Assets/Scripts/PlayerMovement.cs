@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 pos = transform.position; 
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
-            if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump 
+            if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump  
                 isGrounded = false;
                 velocity.y = jumpVelocity;
                 isHoldingJump = true;
@@ -57,10 +57,20 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y += gravity * Time.fixedDeltaTime;
             }
 
-            if (pos.y <= groundHeight) { // Hit the ground
-                pos.y = groundHeight;
-                isGrounded = true;
+            Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y) ; 
+            Vector2 rayDirection = Vector2.up;
+            float rayDistance = velocity.y * Time.fixedDeltaTime;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
+            if(hit.collider != null) {
+                Ground ground = hit.collider.GetComponent<Ground>();
+                if (ground != null) {
+                    groundHeight = ground.groundHeight;
+                    velocity.y = 0.0f;
+                    pos.y = groundHeight;
+                    isGrounded = true;
+                }
             }
+            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
         }
 
         distance += velocity.x * Time.fixedDeltaTime;
@@ -73,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
             if (velocity.x > maxXVelocity) {
                 velocity.x = maxXVelocity;
             }
+
+            Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y) ; 
+            Vector2 rayDirection = Vector2.up;
+            float rayDistance = velocity.y * Time.fixedDeltaTime;
+            
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
+            if(hit.collider == null) {
+                isGrounded = false; 
+                }
+            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
         }
 
         transform.position = pos; 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    public float inferiorLimit;
+    public float superiorLimit;
     public float depth = 1; 
     PlayerMovement playerMovement;
     
@@ -25,8 +27,8 @@ public class Parallax : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x -= realVelocity * Time.fixedDeltaTime;
 
-        if(pos.x <= -18.0f) {
-            pos.x = 18.0f;
+        if(pos.x <= inferiorLimit) {
+            pos.x = superiorLimit;
         }
 
         transform.position = pos;
