@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y += gravity * Time.fixedDeltaTime;
             }
 
-            Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y) ; 
+            Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y - 1.5f) ; 
             Vector2 rayDirection = Vector2.up;
             float rayDistance = velocity.y * Time.fixedDeltaTime;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.x = maxXVelocity;
             }
 
-            Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y) ; 
+            Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y - 1.5f) ; 
             Vector2 rayDirection = Vector2.up;
             float rayDistance = velocity.y * Time.fixedDeltaTime;
             

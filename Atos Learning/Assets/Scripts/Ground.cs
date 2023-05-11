@@ -10,7 +10,7 @@ public class Ground : MonoBehaviour
 
     private void Awake() {
         compositeCollider2D = GetComponent<CompositeCollider2D>(); 
-        groundHeight = compositeCollider2D.bounds.max.y;  
+        groundHeight = compositeCollider2D.bounds.max.y + 1.5f;  
     }
     // Start is called before the first frame update
     void Start()
