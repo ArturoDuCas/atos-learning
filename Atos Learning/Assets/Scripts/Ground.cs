@@ -69,12 +69,11 @@ public class Ground : MonoBehaviour
         float t = player.jumpVelocity / -player.gravity;
         float h2 = player.jumpVelocity * t + (0.5f * (-player.gravity * (t * t)));  // h = v0t + 1/2at^2
         float maxJumpHeight = h1 + h2; 
-        float maxY = maxJumpHeight * 0.7f; // The 70% of the max jump height the player can perform
+        float maxY = maxJumpHeight * 0.5f; // The 70% of the max jump height the player can perform
         maxY += groundHeight; // Add the actual ground Height
-        float minY = screenBottom - 2f; // The minimum height the ground can be at 
+        float minY = screenBottom; // The minimum height the ground can be at 
         float actualY = Random.Range(minY, maxY); 
-        Debug.Log("Max Y: " + maxY + " Min Y: " + minY + " Actual Y: " + actualY); 
-        pos.y = actualY + goCollider.bounds.extents.y;
+        pos.y = actualY;
         if (pos.y > 4.5f)
             pos.y = 4.5f;
 
