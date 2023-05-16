@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
             if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump  
+
+            Debug.Log("Jump");
                 isGrounded = false;
                 velocity.y = jumpVelocity;
                 isHoldingJump = true;
