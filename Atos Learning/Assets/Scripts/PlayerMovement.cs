@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,12 +24,24 @@ public class PlayerMovement : MonoBehaviour
 
     Animator playerAnimator; 
 
+    public float screenBottom;
+    public string sceneName;  
+
     void Start() { 
         playerAnimator = GetComponent<Animator>();
+        screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
     }
 
     void Update() {
         Vector2 pos = transform.position; 
+
+
+        if(pos.y < screenBottom - 10f) {
+            SceneManager.LoadScene(sceneName);
+            return; 
+        }
+
+
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
             if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump  
