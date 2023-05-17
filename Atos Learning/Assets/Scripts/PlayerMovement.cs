@@ -21,8 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpGroundThreshold = 1;
 
-    void Start() { 
+    Animator playerAnimator; 
 
+    void Start() { 
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -99,27 +101,44 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D enemyHitX = Physics2D.Raycast(enemyOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime);
         if (enemyHitX.collider != null) {
             Enemy enemy = enemyHitX.collider.GetComponent<Enemy>();
-            CapsuleCollider2D enemyCollider = enemyHitX.collider.GetComponent<CapsuleCollider2D>();
             if (enemy != null) {
-                hitEnemy(enemyCollider); 
+                hitEnemy(enemyHitX); 
             }
         }
 
         RaycastHit2D enemyHitY = Physics2D.Raycast(enemyOrigin, Vector2.up, velocity.y * Time.fixedDeltaTime);
         if (enemyHitY.collider != null) {
             Enemy enemy = enemyHitY.collider.GetComponent<Enemy>();
-            CapsuleCollider2D enemyCollider = enemyHitY.collider.GetComponent<CapsuleCollider2D>();
             if (enemy != null) {
-                hitEnemy(enemyCollider); 
+                hitEnemy(enemyHitY);
             }
         }
 
         transform.position = pos; 
     }
 
-    void hitEnemy(CapsuleCollider2D enemyCollider) {
+    void hitEnemy(RaycastHit2D hit) {
         Debug.Log("Hit enemy");
+        CapsuleCollider2D enemyCollider = hit.collider.GetComponent<CapsuleCollider2D>();
+        Animator enemyAnimator = hit.collider.GetComponent<Animator>();
+        Vector3 enemyScale = hit.collider.transform.localScale;
+
+        enemyScale.x *= -1;
+        hit.collider.transform.localScale = enemyScale;
+        enemyAnimator.SetTrigger("Attack");
         Destroy(enemyCollider);
-        velocity.x *= 0.7f; 
+        velocity.x *= 0.7f;
+        
+        playerAnimator.SetTrigger("Hurt");
+        float hurtTime = 0.5f;
+        StartCoroutine(ReturnToIdle(hurtTime)); // Iniciar una corrutina para regresar al estado de Idle después del tiempo especificado
+    }
+
+    private IEnumerator ReturnToIdle(float time)
+    {
+        // Esperar el tiempo especificado
+        yield return new WaitForSeconds(time);
+        playerAnimator.SetTrigger("Running");
+        playerAnimator.ResetTrigger("Hurt");
     }
 }

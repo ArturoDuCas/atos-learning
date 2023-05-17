@@ -102,7 +102,6 @@ public class Ground : MonoBehaviour
             float halfWidth = goCollider.bounds.extents.x * 0.9f; // 90% of the ground's width
             float goMinX = go.transform.position.x - halfWidth; 
             float goMaxX = go.transform.position.x + halfWidth;
-            Debug.Log("goMinX: " + goMinX + " goMaxX: " + goMaxX);
             float x = Random.Range(goMinX, goMaxX);
             float y = goGround.groundHeight; 
             Vector2 reaperPos = new Vector2(x, y);
