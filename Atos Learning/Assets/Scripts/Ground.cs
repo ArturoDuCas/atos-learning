@@ -16,12 +16,14 @@ public class Ground : MonoBehaviour
     BoxCollider2D boxCollider2D;
     PlayerMovement player; 
 
-    bool didGenerateGround = false; 
+    bool didGenerateGround = false;
+
+    public Enemy reaperTemplate;  
 
     private void Awake() {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         boxCollider2D = GetComponent<BoxCollider2D>(); 
-        groundHeight = boxCollider2D.bounds.max.y + 1.5f; 
+        groundHeight = boxCollider2D.bounds.max.y + 1.5f;  
         screenRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
         screenLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
@@ -67,12 +69,13 @@ public class Ground : MonoBehaviour
 
         float h1 = player.jumpVelocity * player.maxJumpTime;  
         float t = player.jumpVelocity / -player.gravity;
-        float h2 = player.jumpVelocity * t + (0.5f * (-player.gravity * (t * t)));  // h = v0t + 1/2at^2
+        float h2 = player.jumpVelocity * t + (0.5f * (player.gravity * (t * t)));  // h = v0t + 1/2at^2
         float maxJumpHeight = h1 + h2; 
-        float maxY = maxJumpHeight * 0.5f; // The 70% of the max jump height the player can perform
+        float maxY = maxJumpHeight * 0.7f; // The 70% of the max jump height the player can perform
         maxY += groundHeight; // Add the actual ground Height
         float minY = screenBottom; // The minimum height the ground can be at 
         float actualY = Random.Range(minY, maxY); 
+        
         pos.y = actualY;
         if (pos.y > 4.5f)
             pos.y = 4.5f;
@@ -91,6 +94,19 @@ public class Ground : MonoBehaviour
         go.transform.position = pos;
         
         Ground goGround = go.GetComponent<Ground>();
-        goGround.groundHeight = pos.y + (goCollider.bounds.extents.y / 1.5f);
+        goGround.groundHeight = pos.y + goCollider.bounds.extents.y * 2 + 0.4f;
+
+        int obstacleNum = Random.Range(0, 2); 
+        for (int i = 0; i < obstacleNum; i++) {
+            GameObject reaper = Instantiate(reaperTemplate.gameObject);
+            float halfWidth = goCollider.bounds.extents.x * 0.9f; // 90% of the ground's width
+            float goMinX = go.transform.position.x - halfWidth; 
+            float goMaxX = go.transform.position.x + halfWidth;
+            Debug.Log("goMinX: " + goMinX + " goMaxX: " + goMaxX);
+            float x = Random.Range(goMinX, goMaxX);
+            float y = goGround.groundHeight; 
+            Vector2 reaperPos = new Vector2(x, y);
+            reaper.transform.position = reaperPos;
+        }
     }
 }

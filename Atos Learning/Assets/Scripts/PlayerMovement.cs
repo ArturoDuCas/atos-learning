@@ -30,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
             if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump  
-
-            Debug.Log("Jump");
                 isGrounded = false;
                 velocity.y = jumpVelocity;
                 isHoldingJump = true;
@@ -73,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
                     isGrounded = true;
                 }
             }
-            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
         }
 
         distance += velocity.x * Time.fixedDeltaTime;
@@ -96,9 +93,33 @@ public class PlayerMovement : MonoBehaviour
             if(hit.collider == null) {
                 isGrounded = false; 
                 }
-            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
+        }
+
+        Vector2 enemyOrigin = new Vector2(pos.x, pos.y);
+        RaycastHit2D enemyHitX = Physics2D.Raycast(enemyOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime);
+        if (enemyHitX.collider != null) {
+            Enemy enemy = enemyHitX.collider.GetComponent<Enemy>();
+            CapsuleCollider2D enemyCollider = enemyHitX.collider.GetComponent<CapsuleCollider2D>();
+            if (enemy != null) {
+                hitEnemy(enemyCollider); 
+            }
+        }
+
+        RaycastHit2D enemyHitY = Physics2D.Raycast(enemyOrigin, Vector2.up, velocity.y * Time.fixedDeltaTime);
+        if (enemyHitY.collider != null) {
+            Enemy enemy = enemyHitY.collider.GetComponent<Enemy>();
+            CapsuleCollider2D enemyCollider = enemyHitY.collider.GetComponent<CapsuleCollider2D>();
+            if (enemy != null) {
+                hitEnemy(enemyCollider); 
+            }
         }
 
         transform.position = pos; 
+    }
+
+    void hitEnemy(CapsuleCollider2D enemyCollider) {
+        Debug.Log("Hit enemy");
+        Destroy(enemyCollider);
+        velocity.x *= 0.7f; 
     }
 }
