@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public float screenBottom;
     public string sceneName;  
 
+    public int coins = 0;
+
     void Start() { 
         playerAnimator = GetComponent<Animator>();
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
@@ -110,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
                 }
         }
 
+        // Enemy interaction 
         Vector2 enemyOrigin = new Vector2(pos.x, pos.y);
         RaycastHit2D enemyHitX = Physics2D.Raycast(enemyOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime);
         if (enemyHitX.collider != null) {
@@ -124,6 +127,24 @@ public class PlayerMovement : MonoBehaviour
             Enemy enemy = enemyHitY.collider.GetComponent<Enemy>();
             if (enemy != null) {
                 hitEnemy(enemyHitY);
+            }
+        }
+
+        //Coin interaction
+        Vector2 coinOrigin = new Vector2(pos.x, pos.y);
+        RaycastHit2D coinHitX = Physics2D.Raycast(coinOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime);
+        if (coinHitX.collider != null) {
+            Coin coin = coinHitX.collider.GetComponent<Coin>();
+            if (coin != null) {
+                collectCoin(coinHitX); 
+            }
+        }
+        
+        RaycastHit2D coinHitY = Physics2D.Raycast(coinOrigin, Vector2.up, velocity.y * Time.fixedDeltaTime);
+        if (coinHitY.collider != null) {
+            Coin coin = coinHitY.collider.GetComponent<Coin>();
+            if (coin != null) {
+                collectCoin(coinHitY); 
             }
         }
 
@@ -153,5 +174,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(time);
         playerAnimator.SetTrigger("Running");
         playerAnimator.ResetTrigger("Hurt");
+    }
+
+    void collectCoin(RaycastHit2D hit) {
+        Debug.Log("Moneda");
     }
 }
