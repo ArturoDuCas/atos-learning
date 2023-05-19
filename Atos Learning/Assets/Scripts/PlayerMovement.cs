@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public string sceneName;  
 
     public int coins = 0;
+    public TextMeshProUGUI coinCountText;
 
     void Start() { 
         playerAnimator = GetComponent<Animator>();
@@ -152,7 +155,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void hitEnemy(RaycastHit2D hit) {
-        Debug.Log("Hit enemy");
         CapsuleCollider2D enemyCollider = hit.collider.GetComponent<CapsuleCollider2D>();
         Animator enemyAnimator = hit.collider.GetComponent<Animator>();
         Vector3 enemyScale = hit.collider.transform.localScale;
@@ -176,7 +178,15 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.ResetTrigger("Hurt");
     }
 
+   
+
+
     void collectCoin(RaycastHit2D hit) {
-        Debug.Log("Moneda");
+        Destroy(hit.collider.gameObject);
+        coins += 1;
+        coinCountText.text = "Coins: " + coins.ToString();
+        
     }
+
+    
 }
