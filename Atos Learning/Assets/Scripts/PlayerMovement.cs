@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float distance = 0; 
     public float jumpVelocity = 20; 
     public float maxXVelocity = 100;
-    public float groundHeight = -2.5f; 
+    public float groundHeight; 
     public bool isGrounded = false; 
 
     public bool isHoldingJump = false;
@@ -32,20 +32,19 @@ public class PlayerMovement : MonoBehaviour
     public int coins = 0;
     public TextMeshProUGUI coinCountText;
 
+    public bool isDead = false; 
+
+    public LayerMask groundLayerMask; 
+    public LayerMask obstacleLayerMask;
+
     void Start() { 
         playerAnimator = GetComponent<Animator>();
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
+        groundHeight = screenBottom;
     }
 
     void Update() {
         Vector2 pos = transform.position; 
-
-
-        if(pos.y < screenBottom - 10f) {
-            SceneManager.LoadScene(sceneName);
-            return; 
-        }
-
 
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
@@ -65,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() {
         Vector2 pos = transform.position;
 
+        if (isDead) {
+            return; 
+        }
+
+        if (pos.y < screenBottom - 10f) {
+            isDead = true; 
+        }
+
         if (!isGrounded) {
             if (isHoldingJump) {
                 jumpTime += Time.fixedDeltaTime;
@@ -81,16 +88,31 @@ public class PlayerMovement : MonoBehaviour
             Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y - 1.5f) ; 
             Vector2 rayDirection = Vector2.up;
             float rayDistance = velocity.y * Time.fixedDeltaTime;
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
             if(hit.collider != null) {
                 Ground ground = hit.collider.GetComponent<Ground>();
                 if (ground != null) {
-                    groundHeight = ground.groundHeight;
-                    velocity.y = 0.0f;
-                    pos.y = groundHeight;
-                    isGrounded = true;
+                    if(pos.y >= ground.groundHeight) {
+                        groundHeight = ground.groundHeight;
+                        velocity.y = 0.0f;
+                        pos.y = groundHeight;
+                        isGrounded = true;
+                    }
                 }
             }
+
+            // Detect when hit wall
+            Vector2 wallOrigin = new Vector2(pos.x, pos.y);
+            RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime, groundLayerMask);
+            if (wallHit.collider != null) {
+                Ground ground = wallHit.collider.GetComponent<Ground>();
+                if (ground != null) {
+                    if (pos.y < ground.groundHeight) {
+                        velocity.x = 0.0f;
+                    }
+                }
+            }
+            Debug.DrawRay(wallOrigin, Vector2.right * velocity.x * Time.fixedDeltaTime, Color.red);
         }
 
         distance += velocity.x * Time.fixedDeltaTime;
@@ -117,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Enemy interaction 
         Vector2 enemyOrigin = new Vector2(pos.x, pos.y);
-        RaycastHit2D enemyHitX = Physics2D.Raycast(enemyOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime);
+        RaycastHit2D enemyHitX = Physics2D.Raycast(enemyOrigin, Vector2.right, velocity.x * Time.fixedDeltaTime, obstacleLayerMask);
         if (enemyHitX.collider != null) {
             Enemy enemy = enemyHitX.collider.GetComponent<Enemy>();
             if (enemy != null) {
@@ -125,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        RaycastHit2D enemyHitY = Physics2D.Raycast(enemyOrigin, Vector2.up, velocity.y * Time.fixedDeltaTime);
+        RaycastHit2D enemyHitY = Physics2D.Raycast(enemyOrigin, Vector2.up, velocity.y * Time.fixedDeltaTime, obstacleLayerMask);
         if (enemyHitY.collider != null) {
             Enemy enemy = enemyHitY.collider.GetComponent<Enemy>();
             if (enemy != null) {
