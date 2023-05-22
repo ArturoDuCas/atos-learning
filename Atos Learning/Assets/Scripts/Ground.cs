@@ -20,6 +20,8 @@ public class Ground : MonoBehaviour
 
     public Enemy reaperTemplate;  
 
+    public GameManager gameManager;
+
     private void Awake() {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         boxCollider2D = GetComponent<BoxCollider2D>(); 
@@ -52,6 +54,7 @@ public class Ground : MonoBehaviour
             return; 
         }
 
+
         if (!didGenerateGround) {
             if(groundRight < screenRight) {
                 didGenerateGround = true;
@@ -63,6 +66,10 @@ public class Ground : MonoBehaviour
     }
 
     void generateGround() {
+        if (gameManager.finishedCollectionTime) {
+            return; 
+        }
+
         GameObject go = Instantiate(gameObject);
         BoxCollider2D goCollider = go.GetComponent<BoxCollider2D>();
         Vector2 pos; 
