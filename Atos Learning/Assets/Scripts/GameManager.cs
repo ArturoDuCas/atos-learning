@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float panelFinalPosition; 
     private float screenBottom;
 
+    private bool fixedPlayer = false;
 
     private void Awake() {
         TiratePanel.SetActive(false);
@@ -26,16 +27,25 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        player.gravity = -25f; 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player.distance > limitDistance) {
             finishedCollectionTime = true;
             TiratePanel.SetActive(true);
         }
+
+        if (!fixedPlayer) { // Al inicio del juego, corregir la gravedad del jugador
+            if (player.isGrounded) {
+                player.gravity = -250f;
+                fixedPlayer = true;
+            }
+        }
+
+
+        
     }
 
     private void FixedUpdate() {
