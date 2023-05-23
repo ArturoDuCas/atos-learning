@@ -18,7 +18,9 @@ public class Ground : MonoBehaviour
 
     bool didGenerateGround = false;
 
-    public Enemy reaperTemplate;  
+    public Enemy reaperTemplate; 
+
+    public Coins coinsTemplate;  
 
     public GameManager gameManager;
 
@@ -113,6 +115,15 @@ public class Ground : MonoBehaviour
             float y = goGround.groundHeight; 
             Vector2 reaperPos = new Vector2(x, y);
             reaper.transform.position = reaperPos;
+        }
+
+        int coinsProb = Random.Range(0, 101);
+        if (coinsProb > 65) { 
+            GameObject coins = Instantiate(coinsTemplate.gameObject);
+            float x = go.transform.position.x - goCollider.bounds.extents.x * 0.8f; 
+            float y = goGround.groundHeight + 0.25f;
+            Vector2 coinsPos = new Vector2(x, y);
+            coins.transform.position = coinsPos;
         }
     }
 }
