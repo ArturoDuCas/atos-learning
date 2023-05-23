@@ -11,7 +11,7 @@ public class DropSignScript : MonoBehaviour
 
 private void Awake() {
     screenRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
-    signFinalPosition = screenRight - 6f;
+    signFinalPosition = screenRight - 8f;
 
 }
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ private void Awake() {
 
     void FixedUpdate() {
         Vector2 pos = transform.position; 
-        pos.x -= 0.1f; 
+        pos.x -= 0.2f; 
 
         if(pos.x < signFinalPosition) {
             pos.x = signFinalPosition; 

@@ -190,6 +190,11 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetTrigger("Hurt");
         float hurtTime = 0.5f;
         StartCoroutine(ReturnToIdle(hurtTime)); // Iniciar una corrutina para regresar al estado de Idle después del tiempo especificado
+        coins -= 5; 
+        if (coins < 0) {
+            coins = 0; 
+        }
+        coinCountText.text = "Coins: " + coins.ToString();
     }
 
     private IEnumerator ReturnToIdle(float time)
