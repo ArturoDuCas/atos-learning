@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         if (coins < 0) {
             coins = 0; 
         }
-        coinCountText.text = "Coins: " + coins.ToString();
+        coinCountText.text =  coins.ToString();
     }
 
     private IEnumerator ReturnToIdle(float time)
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
     void collectCoin(RaycastHit2D hit) {
         Destroy(hit.collider.gameObject);
         coins += 1;
-        coinCountText.text = "Coins: " + coins.ToString();
+        coinCountText.text = coins.ToString();
         
     }
 
