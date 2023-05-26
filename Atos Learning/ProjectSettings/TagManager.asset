@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Grounds
   - Obstacles
-  - 
+  - Ground
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: jumpableGround
+    uniqueID: 1442993087
     locked: 0
