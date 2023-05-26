@@ -21,6 +21,8 @@ public class LoginWebRequester : MonoBehaviour
     {
         usernameInputField.text = "";
         passwordInputField.text = "";
+
+        Store.username = "PRUEBA";
     }
 
     // Update is called once per frame
