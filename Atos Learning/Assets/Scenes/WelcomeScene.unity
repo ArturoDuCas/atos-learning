@@ -265,7 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 129412066}
   - component: {fileID: 129412068}
-  - component: {fileID: 129412067}
   m_Layer: 0
   m_Name: Mountains_1
   m_TagString: Untagged
@@ -288,21 +287,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &129412067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129412065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 10
 --- !u!212 &129412068
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,7 +464,6 @@ GameObject:
   m_Component:
   - component: {fileID: 276693080}
   - component: {fileID: 276693082}
-  - component: {fileID: 276693081}
   m_Layer: 0
   m_Name: Fog_1
   m_TagString: Untagged
@@ -503,21 +486,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &276693081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276693079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -30.5
-  superiorLimit: 30.5
-  depth: 10
 --- !u!212 &276693082
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -580,7 +548,6 @@ GameObject:
   m_Component:
   - component: {fileID: 285926794}
   - component: {fileID: 285926796}
-  - component: {fileID: 285926795}
   m_Layer: 0
   m_Name: Mountains_3 (1)
   m_TagString: Untagged
@@ -603,21 +570,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &285926795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285926793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 27
 --- !u!212 &285926796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -852,7 +804,6 @@ GameObject:
   m_Component:
   - component: {fileID: 490948929}
   - component: {fileID: 490948931}
-  - component: {fileID: 490948930}
   m_Layer: 0
   m_Name: Fir_foreground
   m_TagString: Untagged
@@ -875,21 +826,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &490948930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490948928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -31
-  superiorLimit: 31
-  depth: 5
 --- !u!212 &490948931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1137,7 +1073,6 @@ GameObject:
   m_Component:
   - component: {fileID: 674592418}
   - component: {fileID: 674592420}
-  - component: {fileID: 674592419}
   m_Layer: 0
   m_Name: Fir_background
   m_TagString: Untagged
@@ -1160,21 +1095,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &674592419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674592417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -48.5
-  superiorLimit: 48.5
-  depth: 5
 --- !u!212 &674592420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1237,7 +1157,6 @@ GameObject:
   m_Component:
   - component: {fileID: 721794321}
   - component: {fileID: 721794323}
-  - component: {fileID: 721794322}
   m_Layer: 0
   m_Name: Mountains_1
   m_TagString: Untagged
@@ -1260,21 +1179,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &721794322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721794320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 10
 --- !u!212 &721794323
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1558,7 +1462,6 @@ GameObject:
   m_Component:
   - component: {fileID: 997638616}
   - component: {fileID: 997638618}
-  - component: {fileID: 997638617}
   m_Layer: 0
   m_Name: Clouds_1
   m_TagString: Untagged
@@ -1581,21 +1484,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &997638617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997638615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -26
-  superiorLimit: 26
-  depth: 40
 --- !u!212 &997638618
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1658,7 +1546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1161910441}
   - component: {fileID: 1161910443}
-  - component: {fileID: 1161910442}
   m_Layer: 0
   m_Name: Mountains_2 (1)
   m_TagString: Untagged
@@ -1681,21 +1568,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1161910442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161910440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 15
 --- !u!212 &1161910443
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1758,7 +1630,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1219772847}
   - component: {fileID: 1219772849}
-  - component: {fileID: 1219772848}
   m_Layer: 0
   m_Name: Mountains_2
   m_TagString: Untagged
@@ -1781,21 +1652,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1219772848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219772846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 15
 --- !u!212 &1219772849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1858,7 +1714,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1224552015}
   - component: {fileID: 1224552017}
-  - component: {fileID: 1224552016}
   m_Layer: 0
   m_Name: Mountains_3
   m_TagString: Untagged
@@ -1881,21 +1736,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1224552016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224552014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 27
 --- !u!212 &1224552017
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1958,7 +1798,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1274057935}
   - component: {fileID: 1274057937}
-  - component: {fileID: 1274057936}
   m_Layer: 0
   m_Name: Fir_foreground (1)
   m_TagString: Untagged
@@ -1981,21 +1820,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1274057936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274057934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -31
-  superiorLimit: 31
-  depth: 5
 --- !u!212 &1274057937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2058,7 +1882,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1314062226}
   - component: {fileID: 1314062228}
-  - component: {fileID: 1314062227}
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Untagged
@@ -2081,21 +1904,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1314062227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314062225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -26
-  superiorLimit: 26
-  depth: 40
 --- !u!212 &1314062228
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2216,7 +2024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4, y: 6.1}
+  m_AnchoredPosition: {x: -4, y: 6.1000004}
   m_SizeDelta: {x: -2.699997, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447266464
@@ -2326,7 +2134,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1483336584}
   - component: {fileID: 1483336586}
-  - component: {fileID: 1483336585}
   m_Layer: 0
   m_Name: Fog_2
   m_TagString: Untagged
@@ -2349,21 +2156,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1483336585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483336583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -30.5
-  superiorLimit: 30.5
-  depth: 10
 --- !u!212 &1483336586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2426,7 +2218,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1508905724}
   - component: {fileID: 1508905726}
-  - component: {fileID: 1508905725}
   m_Layer: 0
   m_Name: Clouds_0
   m_TagString: Untagged
@@ -2449,21 +2240,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1508905725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508905723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -26
-  superiorLimit: 26
-  depth: 40
 --- !u!212 &1508905726
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2557,7 +2333,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1533677142}
   - component: {fileID: 1533677144}
-  - component: {fileID: 1533677143}
   m_Layer: 0
   m_Name: Clouds_2
   m_TagString: Untagged
@@ -2580,21 +2355,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1533677143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533677141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -26
-  superiorLimit: 26
-  depth: 40
 --- !u!212 &1533677144
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2689,7 +2449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609015411}
   - component: {fileID: 1609015413}
-  - component: {fileID: 1609015412}
   m_Layer: 0
   m_Name: Fog_3
   m_TagString: Untagged
@@ -2712,21 +2471,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1609015412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609015410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -30.5
-  superiorLimit: 30.5
-  depth: 10
 --- !u!212 &1609015413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2999,7 +2743,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1843733385}
   - component: {fileID: 1843733387}
-  - component: {fileID: 1843733386}
   m_Layer: 0
   m_Name: Mountains_1 (1)
   m_TagString: Untagged
@@ -3022,21 +2765,6 @@ Transform:
   m_Father: {fileID: 955252849}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1843733386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843733384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inferiorLimit: -37.9
-  superiorLimit: 37.9
-  depth: 10
 --- !u!212 &1843733387
 SpriteRenderer:
   m_ObjectHideFlags: 0

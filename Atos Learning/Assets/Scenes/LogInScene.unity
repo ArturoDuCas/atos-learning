@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameInputField: {fileID: 1070018052}
   passwordInputField: {fileID: 1190438657}
+  loadingPrefab: {fileID: 100006, guid: 75c4353c4b4125549b782a72884bedd4, type: 3}
 --- !u!4 &297871265
 Transform:
   m_ObjectHideFlags: 0
