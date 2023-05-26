@@ -7,6 +7,7 @@ public class PlayerMovement_Exam : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator anim;
+    private Vector2 scale;
 
     [SerializeField] private LayerMask jumpableGround;
 
@@ -24,13 +25,13 @@ public class PlayerMovement_Exam : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        scale = transform.localScale;
 
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
@@ -48,10 +49,13 @@ public class PlayerMovement_Exam : MonoBehaviour
         if (dirX > 0f)
         {
             anim.SetBool("Running", true);
+            transform.localScale = scale;
+            
         }
         else if (dirX < 0)
         {
             anim.SetBool("Running", true);
+            transform.localScale = new Vector2(-scale.x, scale.y);
         }
         else
         {
