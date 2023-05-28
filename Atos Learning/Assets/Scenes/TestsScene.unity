@@ -767,7 +767,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -8000
+  m_SortingOrder: -9500
   m_Sprite: {fileID: 520817530, guid: b83fd78d22f5df146893176c4b2704dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -915,18 +915,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -20
   velocity: {x: 0, y: 0}
-  maxAcceleration: 10
-  acceleration: 10
   distance: 0
   jumpVelocity: 25
-  maxXVelocity: 30
   groundHeight: -4
   isGrounded: 0
-  isHoldingJump: 0
   maxJumpTime: 0.3
-  maxMaxJumpTime: 0.3
-  jumpTime: 0
-  jumpGroundThreshold: 1
   screenBottom: 0
   sceneName: ResultsScene
   coins: 0
@@ -1179,7 +1172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -8000
+  m_SortingOrder: -9500
   m_Sprite: {fileID: 21300000, guid: b83fd78d22f5df146893176c4b2704dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1460,7 +1453,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -8000
+  m_SortingOrder: -9500
   m_Sprite: {fileID: -1889994752, guid: b83fd78d22f5df146893176c4b2704dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1582,7 +1575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 10
+  depth: 15
 --- !u!212 &1160808284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1849,7 +1842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 27
+  depth: 10
 --- !u!1 &1315975817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 27
+  depth: 10
 --- !u!1 &1348492311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,7 +2042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 15
+  depth: 27
 --- !u!1 &1378815628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 15
+  depth: 27
 --- !u!1 &1448242750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 10
+  depth: 15
 --- !u!212 &1448242753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2323,7 +2316,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -8000
+  m_SortingOrder: -9500
   m_Sprite: {fileID: -230726162, guid: b83fd78d22f5df146893176c4b2704dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2595,8 +2588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702e1eba554b72c4795cce7a1f3e6d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inferiorLimit: -26
-  superiorLimit: 26
+  inferiorLimit: -31
+  superiorLimit: 31
   depth: 5
 --- !u!212 &1829513903
 SpriteRenderer:
@@ -2697,7 +2690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inferiorLimit: -37.9
   superiorLimit: 37.9
-  depth: 10
+  depth: 15
 --- !u!212 &1960840070
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2984,9 +2977,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundHeight: 0
   groundRight: 0
-  screenRight: 0
-  screenLeft: 0
-  screenBottom: 0
   reaperTemplate: {fileID: 8926883764440863718, guid: c80e61e118fee4e4eb39a8f349cef304, type: 3}
   coinsTemplate: {fileID: 2962040371676703886, guid: 5b4840c06a74c5d47abaf5e8f65dd333, type: 3}
   gameControllerObject: {fileID: 1108377078}

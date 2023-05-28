@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    [SerializeField]
     private float inferiorLimit;
+    [SerializeField]
     private float superiorLimit;
+    [SerializeField]
     private float depth = 1; 
     PlayerMovement playerMovement;
     
