@@ -28,9 +28,6 @@ public class LoginWebRequester : MonoBehaviour
         passwordInputField.text = "";
         loadingPanel.SetActive(false);
         errorPanel.SetActive(false);
-
-        
-        Store.username = "PRUEBA";
     }
 
     // Update is called once per frame
@@ -70,7 +67,15 @@ public class LoginWebRequester : MonoBehaviour
                     passwordInputField.text = "";
                     Debug.Log(request.error);
                     yield break;
+                } else { // Usuario y contraseña correctos
+                    JSONNode response = JSON.Parse(request.downloadHandler.text);
+                    Store.username = response["username"];
+
+                    // Cargar escena de juego
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("HomeScene");
                 }
+
+
 
             }
         }
