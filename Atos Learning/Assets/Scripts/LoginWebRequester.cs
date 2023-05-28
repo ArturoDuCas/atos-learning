@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using SimpleJSON; 
 using UnityEngine.UI;
 using TMPro;
+using EasyTransition; 
+
 
 
 public class LoginWebRequester : MonoBehaviour
@@ -15,6 +17,10 @@ public class LoginWebRequester : MonoBehaviour
     
     private GameObject loadingPanel; 
     private GameObject errorPanel; 
+
+    
+    public TransitionSettings transition;
+    public float loadDelay; 
 
     void Awake() {
         loadingPanel = GameObject.Find("LoadingPanel");
@@ -70,9 +76,8 @@ public class LoginWebRequester : MonoBehaviour
                 } else { // Usuario y contraseña correctos
                     JSONNode response = JSON.Parse(request.downloadHandler.text);
                     Store.username = response["username"];
+                    TransitionManager.Instance().Transition("HomeScene", transition, loadDelay); // Carga la siguiente escena
 
-                    // Cargar escena de juego
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("HomeScene");
                 }
 
 
