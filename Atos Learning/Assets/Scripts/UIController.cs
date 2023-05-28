@@ -7,11 +7,9 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     PlayerMovement playerMovement;
-    TextMeshProUGUI distanceText; 
 
     private void Awake() {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>(); 
-        distanceText = GameObject.Find("DistanceText").GetComponent<TextMeshProUGUI>();
     } 
 
 
@@ -23,7 +21,5 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int distance = Mathf.FloorToInt(playerMovement.distance); 
-        distanceText.text = distance + "m"; 
     }
 }

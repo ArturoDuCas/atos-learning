@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public float gravity = -200.0f;
     public Vector2 velocity;
+    [SerializeField]
     private float maxAcceleration = 10; 
+    [SerializeField]
     private float acceleration = 10; 
     public float distance = 0; 
     public float jumpVelocity = 20; 
-    private float maxXVelocity = 100;
+    public float maxXVelocity = 100;
     public float groundHeight; 
     public bool isGrounded = false; 
 
