@@ -9,20 +9,20 @@ public class PlayerMovement : MonoBehaviour
 {
     public float gravity = -200.0f;
     public Vector2 velocity;
-    public float maxAcceleration = 10; 
-    public float acceleration = 10; 
+    private float maxAcceleration = 10; 
+    private float acceleration = 10; 
     public float distance = 0; 
     public float jumpVelocity = 20; 
-    public float maxXVelocity = 100;
+    private float maxXVelocity = 100;
     public float groundHeight; 
     public bool isGrounded = false; 
 
-    public bool isHoldingJump = false;
+    private bool isHoldingJump = false;
     public float maxJumpTime = 0.3f;
-    public float maxMaxJumpTime = 0.3f;
-    public float jumpTime = 0.0f;
+    private float maxMaxJumpTime = 0.3f;
+    private float jumpTime = 0.0f;
 
-    public float jumpGroundThreshold = 1;
+    private float jumpGroundThreshold = 1;
 
     Animator playerAnimator; 
 

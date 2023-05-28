@@ -1576,7 +1576,6 @@ GameObject:
   - component: {fileID: 1563781126}
   - component: {fileID: 1563781125}
   - component: {fileID: 1563781124}
-  - component: {fileID: 1563781127}
   m_Layer: 5
   m_Name: LogInSubmit
   m_TagString: Untagged
@@ -1649,9 +1648,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1563781127}
-        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 297871264}
+        m_TargetAssemblyTypeName: LoginWebRequester, Assembly-CSharp
+        m_MethodName: OnLoginButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1699,19 +1698,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563781122}
   m_CullTransparentMesh: 1
---- !u!114 &1563781127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563781122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c00118a831fbe8498e693bd598e2709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scene: HomeScene
 --- !u!1 &1627584058
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,20 +9,21 @@ public class Ground : MonoBehaviour
     public float groundHeight; 
 
     public float groundRight; 
-    public float screenRight; 
-    public float screenLeft; 
-    public float screenBottom; 
+    private float screenRight; 
+    private float screenLeft; 
+    private float screenBottom; 
 
-    BoxCollider2D boxCollider2D;
-    PlayerMovement player; 
+    private BoxCollider2D boxCollider2D;
+    private PlayerMovement player; 
 
-    bool didGenerateGround = false;
+    private bool didGenerateGround = false;
 
     public Enemy reaperTemplate; 
 
     public Coins coinsTemplate;  
 
-    public GameManager gameManager;
+    public GameObject gameControllerObject; 
+    private GameController gameController;
 
     private void Awake() {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -31,6 +32,7 @@ public class Ground : MonoBehaviour
         screenRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
         screenLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
+        gameController = gameControllerObject.GetComponent<GameController>();
     }
     // Start is called before the first frame update
     void Start()
@@ -68,7 +70,7 @@ public class Ground : MonoBehaviour
     }
 
     void generateGround() {
-        if (gameManager.finishedCollectionTime) {
+        if (gameController.finishedCollectionTime) {
             return; 
         }
 

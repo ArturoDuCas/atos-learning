@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public float inferiorLimit;
-    public float superiorLimit;
-    public float depth = 1; 
+    private float inferiorLimit;
+    private float superiorLimit;
+    private float depth = 1; 
     PlayerMovement playerMovement;
     
     private void Awake() 

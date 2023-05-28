@@ -2989,7 +2989,7 @@ MonoBehaviour:
   screenBottom: 0
   reaperTemplate: {fileID: 8926883764440863718, guid: c80e61e118fee4e4eb39a8f349cef304, type: 3}
   coinsTemplate: {fileID: 2962040371676703886, guid: 5b4840c06a74c5d47abaf5e8f65dd333, type: 3}
-  gameManager: {fileID: 1108377080}
+  gameControllerObject: {fileID: 1108377078}
 --- !u!61 &2064081318
 BoxCollider2D:
   m_ObjectHideFlags: 0

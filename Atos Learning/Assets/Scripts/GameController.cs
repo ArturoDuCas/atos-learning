@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    public PlayerMovement player; 
+    [SerializeField]
+    private PlayerMovement player; 
     public float limitDistance = 50f; 
 
-    public DropSignScript dropSignScript;
+    [SerializeField]
+    private DropSignScript dropSignScript;
     private bool generatedDropSign = false; 
 
     public bool finishedCollectionTime = false; 

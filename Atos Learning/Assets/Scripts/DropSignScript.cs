@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DropSignScript : MonoBehaviour
 {
-    public PlayerMovement player;
-
+    [SerializeField]
     private float screenRight;
     private float signFinalPosition; 
 

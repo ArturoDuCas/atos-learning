@@ -11,17 +11,25 @@ public class LoginWebRequester : MonoBehaviour
 {
     public TMP_InputField usernameInputField;
     public TMP_InputField passwordInputField;
-    public GameObject loadingPrefab; 
 
-    private GameObject loadingObject; 
+    
+    private GameObject loadingPanel; 
+    private GameObject errorPanel; 
 
-    private readonly string baseURL = "";
+    void Awake() {
+        loadingPanel = GameObject.Find("LoadingPanel");
+        errorPanel = GameObject.Find("ErrorPanel");
+
+    }
 
     void Start()
     {
         usernameInputField.text = "";
         passwordInputField.text = "";
+        loadingPanel.SetActive(false);
+        errorPanel.SetActive(false);
 
+        
         Store.username = "PRUEBA";
     }
 
@@ -32,31 +40,44 @@ public class LoginWebRequester : MonoBehaviour
     }
 
     public void OnLoginButtonClicked() {
-        if (loadingObject == null) {
-            loadingObject = Instantiate(loadingPrefab);
-        }
+        errorPanel.SetActive(false);
+        loadingPanel.SetActive(true);
         StartCoroutine(LoginRequest());
     }
 
-    IEnumerator LoginRequest() { // PENDIENTE MIN 8:30 https://www.youtube.com/watch?v=GIxu8kA9EBU&ab_channel=TurboMakesGames
+    IEnumerator LoginRequest() {
         string username = usernameInputField.text;
         string password = passwordInputField.text;
 
-        string url = baseURL + "/login";
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("password", password);
 
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        yield return request.SendWebRequest();
+        string url = "https://atoslearningapi.azurewebsites.net/api/Auth";
 
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError) {
-            Debug.LogError(request.error);
-            yield break; 
+        using(UnityWebRequest request = UnityWebRequest.Post(url, form)) {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError) { // Si se genera un error de conexion.
+                Debug.LogError(request.error);
+                yield break; 
+            } else {
+                loadingPanel.SetActive(false);
+                if (request.result == UnityWebRequest.Result.ProtocolError) // Si el usuario o la contraseña son incorrectos.
+                {
+                    errorPanel.SetActive(true);
+                    errorPanel.GetComponent<PanelController>().DesactivarPanel();
+                    passwordInputField.text = "";
+                    Debug.Log(request.error);
+                    yield break;
+                }
+
+            }
         }
+    }
 
-        JSONNode response = JSON.Parse(request.downloadHandler.text);
-        
-
-
-        Destroy(loadingObject);
-        loadingObject = null;
+    public void OnInputTextValueChanged() {
+        if (errorPanel.activeSelf)
+            errorPanel.SetActive(false);
     }
 }

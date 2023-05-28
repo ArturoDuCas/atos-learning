@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    PlayerMovement player; 
-    float screenLeft;
+    private PlayerMovement player; 
+    private float screenLeft;
 
 
     private void Awake() {
