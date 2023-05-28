@@ -56,9 +56,10 @@ public class LoginWebRequester : MonoBehaviour
         form.AddField("username", username);
         form.AddField("password", password);
 
-        string url = "https://atoslearningapi.azurewebsites.net/api/Auth";
+        string url = "https://atoslearningapi.azurewebsites.net/Auth";
 
         using(UnityWebRequest request = UnityWebRequest.Post(url, form)) {
+            request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.ConnectionError) { // Si se genera un error de conexion.
@@ -75,7 +76,16 @@ public class LoginWebRequester : MonoBehaviour
                     yield break;
                 } else { // Usuario y contraseña correctos
                     JSONNode response = JSON.Parse(request.downloadHandler.text);
-                    Store.username = response["username"];
+                    Store.user_id = response["id"];
+                    Store.user_name = response["name"];
+                    Store.user_surname = response["surname"];
+                    Store.user_email = response["email"];
+                    Store.user_nickname = response["nickname"];
+                    Store.user_characterId = response["characterId"];
+                    Store.user_image = response["image"];
+                    Store.user_totalScore = response["totalScore"];
+                    Store.isTeacher = response["isTeacher"];
+                    Debug.Log(response["name"]);
                     TransitionManager.Instance().Transition("HomeScene", transition, loadDelay); // Carga la siguiente escena
 
                 }
