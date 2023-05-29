@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EasyTransition; 
 
 public class PlayerMovement_Exam : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class PlayerMovement_Exam : MonoBehaviour
     [SerializeField]private float moveSpeed = 7f;
     [SerializeField]private float jumpForce = 40f;
 
+    public string scene; 
+    public TransitionSettings transition;
+    public float loadDelay;
+    
+    private float screenBottom; 
+
 
 
     // Start is called before the first frame update
@@ -27,11 +34,20 @@ public class PlayerMovement_Exam : MonoBehaviour
         anim = GetComponent<Animator>();
         scale = transform.localScale;
 
+        screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
+
     }
 
     // Update is called once per frame
     private void Update()
     {
+        Vector2 pos = transform.position;
+        if (pos.y < screenBottom)
+        {
+            TransitionManager.Instance().Transition(scene, transition, loadDelay); // Carga la siguiente escena        
+        }
+
+
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
