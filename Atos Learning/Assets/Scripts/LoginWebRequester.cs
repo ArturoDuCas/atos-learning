@@ -17,6 +17,7 @@ public class LoginWebRequester : MonoBehaviour
     
     private GameObject loadingPanel; 
     private GameObject errorPanel; 
+    private GameObject badInputPanel; 
 
     
     public TransitionSettings transition;
@@ -25,6 +26,7 @@ public class LoginWebRequester : MonoBehaviour
     void Awake() {
         loadingPanel = GameObject.Find("LoadingPanel");
         errorPanel = GameObject.Find("ErrorPanel");
+        badInputPanel = GameObject.Find("BadInputPanel");
 
     }
 
@@ -34,6 +36,7 @@ public class LoginWebRequester : MonoBehaviour
         passwordInputField.text = "";
         loadingPanel.SetActive(false);
         errorPanel.SetActive(false);
+        badInputPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +47,12 @@ public class LoginWebRequester : MonoBehaviour
 
     public void OnLoginButtonClicked() {
         errorPanel.SetActive(false);
+
+        if (usernameInputField.text == "" || passwordInputField.text == "") {
+            badInputPanel.SetActive(true);
+            return; 
+        }
+
         loadingPanel.SetActive(true);
         StartCoroutine(LoginRequest());
     }
@@ -99,5 +108,7 @@ public class LoginWebRequester : MonoBehaviour
     public void OnInputTextValueChanged() {
         if (errorPanel.activeSelf)
             errorPanel.SetActive(false);
+        if (badInputPanel.activeSelf)
+            badInputPanel.SetActive(false);
     }
 }
