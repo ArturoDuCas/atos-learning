@@ -29,20 +29,27 @@ public class PlayerMovement : MonoBehaviour
     Animator playerAnimator; 
 
     public float screenBottom;
+    private float screenTop; 
     public string sceneName;  
 
     public int coins = 0;
     public TextMeshProUGUI coinCountText;
 
     public bool isDead = false; 
+    private bool onPosition = false;
+    GameController gameController;
 
     public LayerMask groundLayerMask; 
     public LayerMask obstacleLayerMask;
 
+
     void Start() { 
         playerAnimator = GetComponent<Animator>();
+        playerAnimator.ResetTrigger("Dead");
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
+        screenTop = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y;
         groundHeight = screenBottom;
+        gameController = GameObject.Find("GameControllerObject").GetComponent<GameController>();
     }
 
     void Update() {
@@ -66,12 +73,26 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() {
         Vector2 pos = transform.position;
 
-        if (isDead) {
+        if (isDead) { // Si el usuario se murio 
+            if (onPosition) { // Cuando llegue a la posicion donde se movera (altura)
+                distance += maxXVelocity * Time.fixedDeltaTime * 2;
+                if (gameController.finishedCollectionTime) {
+                    velocity.y += gravity * Time.fixedDeltaTime;
+                    Debug.Log("Velocity: " + velocity.y);
+                    pos.y += velocity.y * Time.fixedDeltaTime / 25f;
+                    transform.position = pos;
+                }
+            }
             return; 
         }
 
-        if (pos.y < screenBottom - 10f) {
-            isDead = true; 
+        if (pos.y < screenBottom - 5f) {
+            velocity.x = 0; 
+            isDead = true;
+            playerAnimator.SetTrigger("Dead");  
+            float finalPos = screenTop - 1f; // Hacerlo en una corrutina
+            StartCoroutine(MoveToFinalPos(finalPos));
+            return; 
         }
 
         if (!isGrounded) {
@@ -207,6 +228,21 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.ResetTrigger("Hurt");
     }
 
+    private IEnumerator MoveToFinalPos(float finalPos)
+    {
+    Vector2 pos = transform.position;
+    while (pos.y < finalPos) {
+        pos.y += 0.25f;
+        transform.position = pos;
+        yield return new WaitForSeconds(0.02f);
+    }
+
+    yield return new WaitForSeconds(0.5f);
+    velocity.x = maxXVelocity * 2;
+    onPosition = true; 
+
+    }
+
    
 
 
@@ -214,7 +250,6 @@ public class PlayerMovement : MonoBehaviour
         Destroy(hit.collider.gameObject);
         coins += 1;
         coinCountText.text = coins.ToString();
-        
     }
 
     
