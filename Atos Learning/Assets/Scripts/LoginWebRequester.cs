@@ -58,6 +58,7 @@ public class LoginWebRequester : MonoBehaviour
     }
 
     IEnumerator LoginRequest() {
+        // For user Login 
         string username = usernameInputField.text;
         string password = passwordInputField.text;
 
@@ -75,13 +76,13 @@ public class LoginWebRequester : MonoBehaviour
                 Debug.LogError(request.error);
                 yield break; 
             } else {
-                loadingPanel.SetActive(false);
                 if (request.result == UnityWebRequest.Result.ProtocolError) // Si el usuario o la contraseña son incorrectos.
                 {
                     errorPanel.SetActive(true);
                     errorPanel.GetComponent<PanelController>().DesactivarPanel();
                     passwordInputField.text = "";
                     Debug.Log(request.error);
+                    loadingPanel.SetActive(false);
                     yield break;
                 } else { // Usuario y contraseña correctos
                     JSONNode response = JSON.Parse(request.downloadHandler.text);
@@ -94,16 +95,37 @@ public class LoginWebRequester : MonoBehaviour
                     Store.user_image = response["image"];
                     Store.user_totalScore = response["totalScore"];
                     Store.isTeacher = response["isTeacher"];
-                    Debug.Log(response["name"]);
+
+
+                    // Obtener los examenes del usuario: 
+                    int userId = Store.user_id;
+                    url = "https://atoslearningapi.azurewebsites.net/VideoGameExams?userId=" + userId.ToString(); 
+
+                    using(UnityWebRequest examsRequest = UnityWebRequest.Get(url)) {
+                        yield return examsRequest.SendWebRequest(); 
+                        
+                        if (examsRequest.result == UnityWebRequest.Result.ConnectionError) { // Si se genera un error de conexion 
+                            Debug.LogError(examsRequest.error);
+                            yield break; 
+                        } else {
+                            if (examsRequest.result == UnityWebRequest.Result.ProtocolError) { // Si hay un error en la peticion 
+                                Debug.LogError(examsRequest.error);
+                                yield break; 
+                            } else { // Se obtuvieron los datos correctamente
+                                JSONNode examResponse = JSON.Parse(examsRequest.downloadHandler.text);
+                                Store.exams = examResponse.AsArray; 
+                            }
+                        }
+                    }
+        
+                    
+                    loadingPanel.SetActive(false);
                     TransitionManager.Instance().Transition("HomeScene", transition, loadDelay); // Carga la siguiente escena
-
                 }
-
-
-
             }
         }
     }
+
 
     public void OnInputTextValueChanged() {
         if (errorPanel.activeSelf)

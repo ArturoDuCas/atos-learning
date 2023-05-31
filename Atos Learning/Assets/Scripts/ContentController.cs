@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SimpleJSON;
 
 public class ContentController : MonoBehaviour
 {
@@ -22,10 +23,12 @@ public class ContentController : MonoBehaviour
     }
 
     private void generateExamList() {
-        // foreach(JSONNode exam in Store.exams) {
-
-        //     GameObject examCard = Instantiate(examCardPrefab, transform);
-        //     examCard.GetComponent<ExamCardController>().updateData(exam);
-        // }
+        foreach(JSONNode exam in Store.exams) {
+            string examnName = exam["title"]; 
+            string examDescription = exam["description"]; 
+            string examImage = exam["image"]; 
+            GameObject examCard = Instantiate(examCardPrefab, transform);
+            examCard.GetComponent<ExamCardScript>().updateData(examnName, examDescription, examImage);
+        }
     }
 }
