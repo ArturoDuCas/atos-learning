@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDead = false; 
     private bool onPosition = false;
     GameController gameController;
+    private GameObject claw; 
 
     public LayerMask groundLayerMask; 
     public LayerMask obstacleLayerMask;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         screenTop = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y;
         groundHeight = screenBottom;
         gameController = GameObject.Find("GameControllerObject").GetComponent<GameController>();
+        claw = GameObject.Find("Claw");
     }
 
     void Update() {
@@ -89,9 +91,11 @@ public class PlayerMovement : MonoBehaviour
         if (pos.y < screenBottom - 5f) {
             velocity.x = 0; 
             isDead = true;
-            playerAnimator.SetTrigger("Dead");  
-            float finalPos = screenTop - 1f; // Hacerlo en una corrutina
-            StartCoroutine(MoveToFinalPos(finalPos));
+            playerAnimator.SetTrigger("Dead");
+            float initialPos = screenBottom - 5f;
+            float finalPos = screenTop - 1f; 
+            StartCoroutine(deadFunctionality(initialPos, finalPos));
+            // StartCoroutine(moveToFinalPos(finalPos)); // Subir al personaje y la garra
             return; 
         }
 
@@ -228,19 +232,31 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.ResetTrigger("Hurt");
     }
 
-    private IEnumerator MoveToFinalPos(float finalPos)
-    {
-    Vector2 pos = transform.position;
-    while (pos.y < finalPos) {
+
+    private IEnumerator deadFunctionality(float initialPos, float finalPos) {
+        // Bajar la garra
+        Vector2 clawPos = claw.transform.position;
+        clawPos.x = transform.position.x + 0.2f;
+        while (clawPos.y - 20f > initialPos) {
+            clawPos.y -= 0.25f;
+            claw.transform.position = clawPos;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        // Subir la garra y el usuario 
+        Vector2 pos = transform.position;
+        while (pos.y < finalPos) {
         pos.y += 0.25f;
+        clawPos.y += 0.25f;
+        claw.transform.position = clawPos;
         transform.position = pos;
         yield return new WaitForSeconds(0.02f);
-    }
+        }
 
-    yield return new WaitForSeconds(0.5f);
-    velocity.x = maxXVelocity * 2;
-    onPosition = true; 
-
+        yield return new WaitForSeconds(0.5f);
+        velocity.x = maxXVelocity * 2;
+        onPosition = true; 
+        
     }
 
    
