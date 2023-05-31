@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private bool onPosition = false;
     GameController gameController;
     private GameObject claw; 
+    private bool isDropping = false;
 
     public LayerMask groundLayerMask; 
     public LayerMask obstacleLayerMask;
@@ -76,13 +77,11 @@ public class PlayerMovement : MonoBehaviour
         Vector2 pos = transform.position;
 
         if (isDead) { // Si el usuario se murio 
-            if (onPosition) { // Cuando llegue a la posicion donde se movera (altura)
+            if (onPosition && !isDropping) { // Cuando llegue a la posicion donde se movera (altura)
                 distance += maxXVelocity * Time.fixedDeltaTime * 2;
                 if (gameController.finishedCollectionTime) {
-                    velocity.y += gravity * Time.fixedDeltaTime;
-                    Debug.Log("Velocity: " + velocity.y);
-                    pos.y += velocity.y * Time.fixedDeltaTime / 25f;
-                    transform.position = pos;
+                    StartCoroutine(dropPlayer(pos)); 
+                    isDropping = true;
                 }
             }
             return; 
@@ -95,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
             float initialPos = screenBottom - 5f;
             float finalPos = screenTop - 1f; 
             StartCoroutine(deadFunctionality(initialPos, finalPos));
-            // StartCoroutine(moveToFinalPos(finalPos)); // Subir al personaje y la garra
             return; 
         }
 
@@ -232,11 +230,22 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.ResetTrigger("Hurt");
     }
 
+    private IEnumerator dropPlayer(Vector2 pos) {
+        yield return new WaitForSeconds(1.25f);
+        velocity.x = 0f;
+        while (pos.y > screenBottom - 3f) {
+            velocity.y += gravity * Time.fixedDeltaTime;
+            pos.y += velocity.y * Time.fixedDeltaTime / 25f;
+            transform.position = pos;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
 
     private IEnumerator deadFunctionality(float initialPos, float finalPos) {
         // Bajar la garra
         Vector2 clawPos = claw.transform.position;
-        clawPos.x = transform.position.x + 0.2f;
+        clawPos.x = transform.position.x - 0.5f;
         while (clawPos.y - 20f > initialPos) {
             clawPos.y -= 0.25f;
             claw.transform.position = clawPos;
