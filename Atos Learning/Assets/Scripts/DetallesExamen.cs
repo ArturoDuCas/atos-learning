@@ -18,6 +18,17 @@ public class DetallesExamen : MonoBehaviour
     public string actualExam_image;
     public string actualExam_questionCount;
 
+    public GameObject actualExam_subjectText;
+    public GameObject actualExam_dueDateText;
+    public GameObject actualExam_titleText;
+    public GameObject actualExam_descriptionText;
+    public GameObject actualExam_imageText;
+    public GameObject actualExam_questionCountText;
+
+    void Awake(){
+        actualExam_subjectText = GameObject.Find("DETALLES EXAMEN").
+    }
+
 
 
 
