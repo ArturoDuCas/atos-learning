@@ -5,8 +5,7 @@ using TMPro;
 public class CountDown : MonoBehaviour
 {
     public float countdownTime = 15f; // Tiempo inicial del contador
-    public TextMeshProUGUI countdownText; // Referencia al componente Text para mostrar el contador
-
+   
     public float currentTime;
 
     public int seconds; 
@@ -28,7 +27,6 @@ public class CountDown : MonoBehaviour
         
         // Actualizar el texto del contador
         seconds = Mathf.FloorToInt(currentTime % 60);
-        countdownText.text = "Time: " + seconds.ToString();
 
         // Si el contador llega a cero, realizar alguna acción o detener el tiempo
         if (currentTime <= 0)
@@ -38,3 +36,4 @@ public class CountDown : MonoBehaviour
         }
     }
 }
+

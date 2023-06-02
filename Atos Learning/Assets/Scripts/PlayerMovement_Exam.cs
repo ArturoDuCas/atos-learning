@@ -24,6 +24,8 @@ public class PlayerMovement_Exam : MonoBehaviour
     
     private float screenBottom; 
 
+    CountDown countDownComponent;
+
 
 
     // Start is called before the first frame update
@@ -33,6 +35,7 @@ public class PlayerMovement_Exam : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         scale = transform.localScale;
+        countDownComponent = GameObject.Find("CountDown").GetComponent<CountDown>(); 
 
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
 
@@ -41,6 +44,9 @@ public class PlayerMovement_Exam : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(countDownComponent.currentTime   == 0f) {
+            return; 
+        }
         Vector2 pos = transform.position;
         if (pos.y < screenBottom)
         {

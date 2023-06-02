@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 279013531}
   - component: {fileID: 279013530}
   - component: {fileID: 279013532}
+  - component: {fileID: 279013533}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -406,6 +407,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &279013533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279013525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b0131574338354f901a091d859c753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownComponent: {fileID: 0}
+  isCorrect: 0
+  screenBottom: 0
+  isFixed: 0
 --- !u!1 &284619799
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +958,7 @@ GameObject:
   - component: {fileID: 533953132}
   - component: {fileID: 533953131}
   - component: {fileID: 533953130}
+  - component: {fileID: 533953133}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -1062,6 +1080,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &533953133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533953128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b0131574338354f901a091d859c753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownComponent: {fileID: 0}
+  isCorrect: 0
+  screenBottom: 0
+  isFixed: 0
 --- !u!1 &549283100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1192,7 @@ GameObject:
   - component: {fileID: 685259251}
   - component: {fileID: 685259250}
   - component: {fileID: 685259249}
+  - component: {fileID: 685259252}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -1279,6 +1314,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &685259252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685259247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b0131574338354f901a091d859c753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownComponent: {fileID: 0}
+  isCorrect: 0
+  screenBottom: 0
+  isFixed: 0
 --- !u!1 &689710140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,6 +1510,7 @@ GameObject:
   - component: {fileID: 932333907}
   - component: {fileID: 932333906}
   - component: {fileID: 932333905}
+  - component: {fileID: 932333908}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -1580,6 +1632,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &932333908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932333903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b0131574338354f901a091d859c753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownComponent: {fileID: 0}
+  isCorrect: 0
+  screenBottom: 0
+  isFixed: 0
 --- !u!1 &954018447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: 171}
+  m_AnchoredPosition: {x: 14, y: 194}
   m_SizeDelta: {x: 160, y: 47.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267228619
@@ -2344,7 +2412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 15
-  countdownText: {fileID: 0}
   currentTime: 0
   seconds: 0
 --- !u!1 &1430277186
@@ -2555,7 +2622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
