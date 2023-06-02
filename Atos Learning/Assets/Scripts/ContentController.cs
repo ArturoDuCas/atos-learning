@@ -26,7 +26,7 @@ public class ContentController : MonoBehaviour
         foreach(JSONNode exam in Store.exams) {
             string examnName = exam["title"]; 
             string examDescription = exam["description"]; 
-            string examImage = exam["image"]; 
+            string examImage = exam["imageUrl"]; 
             GameObject examCard = Instantiate(examCardPrefab, transform);
             examCard.GetComponent<ExamCardScript>().updateData(examnName, examDescription, examImage);
         }
