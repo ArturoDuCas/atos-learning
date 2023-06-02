@@ -42,7 +42,9 @@ public class LoginWebRequester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Return)) {
+            OnLoginButtonClicked();
+        }
     }
 
     public void OnLoginButtonClicked() {

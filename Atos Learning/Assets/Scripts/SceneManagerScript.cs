@@ -16,4 +16,5 @@ public class SceneManagerScript : MonoBehaviour
         Debug.Log("Cambiando de escena"); 
         TransitionManager.Instance().Transition(scene, transition, loadDelay); // Carga la siguiente escena        
     }
+
 }

@@ -5,45 +5,80 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 using EasyTransition; 
+using SimpleJSON; 
 
 
 
 public class DetallesExamen : MonoBehaviour
 {
+    private GameObject titleText;
+    private GameObject subjectText;
+    private GameObject dueDateText;
+    private GameObject descriptionText;
+    private GameObject image;
+    private GameObject questionCountText;
 
-    public string actualExam_subject;
-    public string actualExam_dueDate;
-    public string actualExam_title;
-    public string actualExam_description;
-    public string actualExam_image;
-    public string actualExam_questionCount;
-
-    public GameObject actualExam_subjectText;
-    public GameObject actualExam_dueDateText;
-    public GameObject actualExam_titleText;
-    public GameObject actualExam_descriptionText;
-    public GameObject actualExam_imageText;
-    public GameObject actualExam_questionCountText;
+    [SerializeField]
+    private TransitionSettings transition; 
+    [SerializeField]
+    private float loadDelay; 
 
     void Awake(){
-        actualExam_subjectText = GameObject.Find("DETALLES EXAMEN").
+        titleText = GameObject.Find("Title"); 
+        subjectText = GameObject.Find("Subject");
+        dueDateText = GameObject.Find("Date");
+        descriptionText = GameObject.Find("Description");
+        image = GameObject.Find("Image");
+        questionCountText = GameObject.Find("Questions");
+
+
+        titleText.GetComponent<TMPro.TextMeshProUGUI>().text = Store.actualExam_title;
+        subjectText.GetComponent<TMPro.TextMeshProUGUI>().text = Store.actualExam_subject;
+        dueDateText.GetComponent<TMPro.TextMeshProUGUI>().text = "Hasta: " + Store.actualExam_dueDate.Replace("T", " - ");
+        descriptionText.GetComponent<TMPro.TextMeshProUGUI>().text = Store.actualExam_description;
+        questionCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "Preguntas: " + Store.actualExam_questionCount.ToString();
+        StartCoroutine(GetImage(Store.actualExam_image));
+    }
+
+    IEnumerator GetImage(string url) {
+        UnityWebRequest examSpriteRequest = UnityWebRequestTexture.GetTexture(url); 
+
+        yield return examSpriteRequest.SendWebRequest();
+
+        if (examSpriteRequest.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.LogError(examSpriteRequest.error);
+            yield break;
+        }
+
+        image.GetComponent<RawImage>().texture = ((DownloadHandlerTexture) examSpriteRequest.downloadHandler).texture;
+        image.GetComponent<RawImage>().texture.filterMode = FilterMode.Point;
     }
 
 
+    public void OnPlayButton() {
+        StartCoroutine(GetExamQuestions(Store.actualExam_id)); 
 
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        TransitionManager.Instance().Transition("TestsScene", transition, loadDelay); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator GetExamQuestions(int examID) {
+        string url = "https://atoslearningapi.azurewebsites.net/VideoGameExams/questions?examId=" + examID.ToString();
+
+        using(UnityWebRequest questionsRequest = UnityWebRequest.Get(url)) {
+            yield return questionsRequest.SendWebRequest(); 
+
+            if (questionsRequest.result == UnityWebRequest.Result.ProtocolError) { // Si se genera un error de conexion
+                Debug.LogError(questionsRequest.error);
+                yield break;
+            } else {
+                if (questionsRequest.result == UnityWebRequest.Result.ProtocolError) { // Si hay un error en la peticion 
+                    Debug.LogError(questionsRequest.error);
+                    yield break;
+                } else { // Se obtuvieron los datos correctamente
+                JSONNode questions = JSON.Parse(questionsRequest.downloadHandler.text);
+                Store.examQuestions = questions.AsArray;
+                }
+            }
+        }
     }
 }

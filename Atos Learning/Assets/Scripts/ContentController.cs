@@ -24,11 +24,18 @@ public class ContentController : MonoBehaviour
 
     private void generateExamList() {
         foreach(JSONNode exam in Store.exams) {
-            string examnName = exam["title"]; 
+            string examName = exam["title"]; 
             string examDescription = exam["description"]; 
-            string examImage = exam["imageUrl"]; 
+            string examImage = exam["imageUrl"];
+            string examSubject = exam["subjectName"]; 
+            string teacherName = exam["teacherName"];
+            string dueDate = exam["dueDate"];
+            int questionCount = exam["questionsCount"]; 
+            int examId = exam["id"];
+
             GameObject examCard = Instantiate(examCardPrefab, transform);
-            examCard.GetComponent<ExamCardScript>().updateData(examnName, examDescription, examImage);
+            examCard.GetComponent<ExamCardScript>().setProps(examName, examDescription, examImage, examSubject, teacherName, dueDate, questionCount, examId);
+            examCard.GetComponent<ExamCardScript>().updateCardData();
         }
     }
 }
