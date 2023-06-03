@@ -36,6 +36,8 @@ public class QuestionSceneController : MonoBehaviour
 
     private void setData() {
         GameObject.Find("QuestionText").GetComponent<TMPro.TextMeshProUGUI>().text = question;
+        Store.player_actualQuestion += 1;
+        GameObject.Find("QuestionNumberText").GetComponent<TMPro.TextMeshProUGUI>().text = "Pregunta " + Store.player_actualQuestion.ToString() + "/" + Store.actualExam_questionCount.ToString();
 
         // Randomize answer order
         List<int> answerOptions = new List<int>(); 
@@ -43,7 +45,7 @@ public class QuestionSceneController : MonoBehaviour
             answerOptions.Add(i);
         }
         System.Random random = new System.Random();
-        
+
         for (int i = 0; i < 4; i++) {
             int answerOptionIndex = random.Next(0, answerOptions.Count);
             int index = answerOptions[answerOptionIndex];
