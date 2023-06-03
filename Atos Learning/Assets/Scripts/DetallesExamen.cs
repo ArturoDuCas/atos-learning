@@ -17,6 +17,8 @@ public class DetallesExamen : MonoBehaviour
     private GameObject descriptionText;
     private GameObject image;
     private GameObject questionCountText;
+    private GameObject loadingPanel;
+
 
     [SerializeField]
     private TransitionSettings transition; 
@@ -30,6 +32,7 @@ public class DetallesExamen : MonoBehaviour
         descriptionText = GameObject.Find("Description");
         image = GameObject.Find("Image");
         questionCountText = GameObject.Find("Questions");
+        loadingPanel = GameObject.Find("LoadingPanel");
 
 
         titleText.GetComponent<TMPro.TextMeshProUGUI>().text = Store.actualExam_title;
@@ -38,6 +41,10 @@ public class DetallesExamen : MonoBehaviour
         descriptionText.GetComponent<TMPro.TextMeshProUGUI>().text = Store.actualExam_description;
         questionCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "Preguntas: " + Store.actualExam_questionCount.ToString();
         StartCoroutine(GetImage(Store.actualExam_image));
+    }
+
+    void Start() {
+        loadingPanel.SetActive(false);
     }
 
     IEnumerator GetImage(string url) {
@@ -57,8 +64,7 @@ public class DetallesExamen : MonoBehaviour
 
     public void OnPlayButton() {
         StartCoroutine(GetExamQuestions(Store.actualExam_id)); 
-
-        TransitionManager.Instance().Transition("TestsScene", transition, loadDelay); 
+        loadingPanel.SetActive(true);
     }
 
     IEnumerator GetExamQuestions(int examID) {
@@ -80,5 +86,6 @@ public class DetallesExamen : MonoBehaviour
                 }
             }
         }
+        TransitionManager.Instance().Transition("TestsScene", transition, loadDelay); 
     }
 }
