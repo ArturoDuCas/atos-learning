@@ -22,12 +22,37 @@ public class PlayerMovement_Exam : MonoBehaviour
     public TransitionSettings transition;
     public float loadDelay;
     
-    private float screenBottom; 
+    private float screenBottom;
+    private float screenTop;  
+    private float screenMiddleX; 
 
     CountDown countDownComponent;
 
+    private Collider2D lastTouched; 
+    Color lastTouchedColor; 
+
+    private bool justFinished = true;
+
+    void Awake() {
+        lastTouched = null; 
+        lastTouchedColor = new Color(.165f, 1f, 0f);
+    }
 
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(lastTouched == collision.collider) { // Si esta tocando el mismo
+            return; 
+        } else {
+            if (lastTouched != null) {
+                lastTouched.GetComponent<Renderer>().material.color = Color.white;
+            }
+            lastTouched = collision.collider;
+            lastTouched.GetComponent<Renderer>().material.color = lastTouchedColor;
+
+            Debug.Log("Last touched: " + lastTouched.name);
+        }
+    }
     // Start is called before the first frame update
     private void Start()
     {
@@ -38,19 +63,30 @@ public class PlayerMovement_Exam : MonoBehaviour
         countDownComponent = GameObject.Find("CountDown").GetComponent<CountDown>(); 
 
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
+        screenTop = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y;
+        screenMiddleX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, 0)).x;
 
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(countDownComponent.currentTime   == 0f) {
+        if(countDownComponent.currentTime   == 0f && justFinished) {
+            anim.SetBool("Running", false);
+            justFinished = false;
+            return; 
+        } else if (countDownComponent.currentTime == 0f && !justFinished) {
             return; 
         }
+
+
         Vector2 pos = transform.position;
-        if (pos.y < screenBottom)
+        if (pos.y < screenBottom - 4f) // Si el jugador se cae de la pantalla
         {
-            TransitionManager.Instance().Transition(scene, transition, loadDelay); // Carga la siguiente escena        
+            pos.y = screenTop + 2f; 
+            pos.x = -12.8f;
+            transform.position = pos;
+            // TransitionManager.Instance().Transition(scene, transition, loadDelay); // Carga la siguiente escena        
         }
 
 
