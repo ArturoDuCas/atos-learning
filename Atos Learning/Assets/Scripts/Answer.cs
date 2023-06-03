@@ -6,7 +6,7 @@ using TMPro;
 public class Answer : MonoBehaviour
 {
     private string answerText;
-    private bool isCorrect;
+    public bool isCorrect;
 
     GameObject answerContainerObject; 
     GameObject answerTextObject;

@@ -32,6 +32,7 @@ public class PlayerMovement_Exam : MonoBehaviour
     Color lastTouchedColor; 
 
     private bool justFinished = true;
+    private bool isCorrect; 
 
     void Awake() {
         lastTouched = null; 
@@ -41,7 +42,7 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(lastTouched == collision.collider) { // Si esta tocando el mismo
+        if(lastTouched == collision.collider) { // Si esta tocando el mismo sulo 
             return; 
         } else {
             if (lastTouched != null) {
@@ -49,8 +50,10 @@ public class PlayerMovement_Exam : MonoBehaviour
             }
             lastTouched = collision.collider;
             lastTouched.GetComponent<Renderer>().material.color = lastTouchedColor;
-
-            Debug.Log("Last touched: " + lastTouched.name);
+            GameObject answerObject = lastTouched.gameObject.transform.parent.gameObject;
+            isCorrect = answerObject.GetComponent<Answer>().isCorrect;
+            Debug.Log(isCorrect);
+            // isCorrect = lastTouched.GetComponent<Answer>().isCorrect;
         }
     }
     // Start is called before the first frame update
@@ -74,6 +77,7 @@ public class PlayerMovement_Exam : MonoBehaviour
         if(countDownComponent.currentTime   == 0f && justFinished) {
             anim.SetBool("Running", false);
             justFinished = false;
+            Debug.Log(isCorrect);
             return; 
         } else if (countDownComponent.currentTime == 0f && !justFinished) {
             return; 
