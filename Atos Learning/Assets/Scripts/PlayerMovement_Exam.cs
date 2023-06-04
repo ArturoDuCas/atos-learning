@@ -19,7 +19,8 @@ public class PlayerMovement_Exam : MonoBehaviour
     [SerializeField]private float jumpForce = 40f;
 
     public string scene; 
-    public TransitionSettings transition;
+    public TransitionSettings transitionResult;
+    public TransitionSettings transitionGame;
     public float loadDelay;
     
     private float screenBottom;
@@ -33,6 +34,9 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     private bool justFinished = true;
     private bool isCorrect; 
+
+    [SerializeField]
+    private GameObject confetti; 
 
     void Awake() {
         lastTouched = null; 
@@ -52,7 +56,6 @@ public class PlayerMovement_Exam : MonoBehaviour
             lastTouched.GetComponent<Renderer>().material.color = lastTouchedColor;
             GameObject answerObject = lastTouched.gameObject.transform.parent.gameObject;
             isCorrect = answerObject.GetComponent<Answer>().isCorrect;
-            Debug.Log(isCorrect);
             // isCorrect = lastTouched.GetComponent<Answer>().isCorrect;
         }
     }
@@ -71,13 +74,32 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     }
 
+    IEnumerator evaluateAnswer() {
+        yield return new WaitForSeconds(3f);
+        if (isCorrect) {
+            GameObject confettiInstance = Instantiate(confetti);
+            Vector2 confettiPos = new Vector2(screenMiddleX, screenTop + 1f);
+            confettiInstance.transform.position = confettiPos;
+            Store.player_correctAnswers++; 
+        } else {
+            anim.SetBool("Incorrect", true);       
+        }
+
+        yield return new WaitForSeconds(3f);
+        if (Store.examQuestions.Count == 0) { // Si ya contesto todas las preguntas
+            TransitionManager.Instance().Transition("ResultsScene", transitionResult, loadDelay); 
+        } else {
+            TransitionManager.Instance().Transition("TestsScene", transitionGame, loadDelay); // Carga la siguiente escena
+        }
+    }
+
     // Update is called once per frame
     private void Update()
     {
         if(countDownComponent.currentTime   == 0f && justFinished) {
             anim.SetBool("Running", false);
             justFinished = false;
-            Debug.Log(isCorrect);
+            StartCoroutine(evaluateAnswer()); 
             return; 
         } else if (countDownComponent.currentTime == 0f && !justFinished) {
             return; 
@@ -90,7 +112,6 @@ public class PlayerMovement_Exam : MonoBehaviour
             pos.y = screenTop + 2f; 
             pos.x = -12.8f;
             transform.position = pos;
-            // TransitionManager.Instance().Transition(scene, transition, loadDelay); // Carga la siguiente escena        
         }
 
 
@@ -103,6 +124,10 @@ public class PlayerMovement_Exam : MonoBehaviour
         }
 
         UpdateAnimationUpdate();
+    }
+
+    public void onIncorrectAnimationEnd() {
+        anim.SetBool("Incorrect", false); 
     }
 
     private void UpdateAnimationUpdate()

@@ -29,4 +29,6 @@ public static class Store
     public static JSONArray examQuestions; 
 
     public static int player_actualQuestion = 0; 
+    public static int player_correctAnswers = 0;
+
 }

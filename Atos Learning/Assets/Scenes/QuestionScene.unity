@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305d34c9fb3c134c82480e9f78b56d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCorrect: 0
 --- !u!1 &163061446
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305d34c9fb3c134c82480e9f78b56d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCorrect: 0
 --- !u!4 &176022573
 Transform:
   m_ObjectHideFlags: 0
@@ -691,8 +693,10 @@ MonoBehaviour:
   moveSpeed: 11
   jumpForce: 27
   scene: ResultsScene
-  transition: {fileID: 11400000, guid: 013263c83b6a84c4d95beaa8bd163ac8, type: 2}
+  transitionResult: {fileID: 11400000, guid: 013263c83b6a84c4d95beaa8bd163ac8, type: 2}
+  transitionGame: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   loadDelay: 0
+  confetti: {fileID: 1749279981871910244, guid: 9ae1c6d607927494cabcf243a966495a, type: 3}
 --- !u!1 &389387236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,6 +2307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305d34c9fb3c134c82480e9f78b56d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCorrect: 0
 --- !u!4 &1224179672
 Transform:
   m_ObjectHideFlags: 0
@@ -2885,7 +2890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1643af0266fbfd4da2cf40209f5e6b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 15
+  countdownTime: 5
   currentTime: 0
   seconds: 0
 --- !u!1 &1415103372
@@ -4034,6 +4039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305d34c9fb3c134c82480e9f78b56d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCorrect: 0
 --- !u!4 &2022730266
 Transform:
   m_ObjectHideFlags: 0
