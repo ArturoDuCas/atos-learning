@@ -99,6 +99,7 @@ public class PlayerMovement_Exam : MonoBehaviour
         if(countDownComponent.currentTime   == 0f && justFinished) {
             anim.SetBool("Running", false);
             justFinished = false;
+            Store.player_answersHistory.Add(isCorrect);
             StartCoroutine(evaluateAnswer()); 
             return; 
         } else if (countDownComponent.currentTime == 0f && !justFinished) {

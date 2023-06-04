@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AnswersContainerController : MonoBehaviour
 {
     [SerializeField]
     private GameObject answerCircle; 
-    private List<bool> answers = new List<bool>() {true, false, false, false, true, true};
-
+    private List<bool> answers = Store.player_answersHistory;
     private float componentLeftSide; 
     private float componentRightSide;
 
@@ -19,7 +19,7 @@ public class AnswersContainerController : MonoBehaviour
             GameObject answerObject = Instantiate(answerCircle);
             Vector2 pos = new Vector2(); 
             pos.y = transform.position.y;
-            pos.x = componentLeftSide + (componentRightSide - componentLeftSide) / (answers.Count + 1) * (i + 1);
+            pos.x = componentRightSide - (componentRightSide - componentLeftSide) * Math.Abs(i - answers.Count + 1) / (answers.Count); 
             answerObject.GetComponent<AnswerCircle>().setData((i + 1), answers[i]);
             answerObject.transform.position = pos;
         }
