@@ -12,7 +12,6 @@ public class CountDown : MonoBehaviour
 
     private void Start()
     {
-        currentTime = countdownTime;
     }
 
     private void Update()
@@ -34,6 +33,11 @@ public class CountDown : MonoBehaviour
             currentTime = 0;
             // Realizar alguna acción al llegar a cero
         }
+    }
+
+    public void setTime(float time) {
+        countdownTime = time;
+        currentTime = countdownTime;
     }
 }
 

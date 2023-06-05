@@ -9,6 +9,7 @@ public class QuestionSceneController : MonoBehaviour
 {
     private string question; 
     private JSONArray answers; 
+    private int timeLimit; 
 
     void Awake() {
         getQuestion(); 
@@ -22,6 +23,7 @@ public class QuestionSceneController : MonoBehaviour
 
         question = questionData["title"];
         answers = questionData["answers"].AsArray;
+        timeLimit = questionData["timeLimit"];
 
         // Remove question from examQuestions
         JSONArray updatedArray = new JSONArray();
@@ -31,13 +33,14 @@ public class QuestionSceneController : MonoBehaviour
             }
         }
         Store.examQuestions = updatedArray;
-        Debug.Log(Store.examQuestions); 
     }
 
     private void setData() {
         GameObject.Find("QuestionText").GetComponent<TMPro.TextMeshProUGUI>().text = question;
         Store.player_actualQuestion += 1;
         GameObject.Find("QuestionNumberText").GetComponent<TMPro.TextMeshProUGUI>().text = "Pregunta " + Store.player_actualQuestion.ToString() + "/" + Store.actualExam_questionCount.ToString();
+        
+        GameObject.Find("CountDown").GetComponent<CountDown>().setTime(timeLimit);
 
         // Randomize answer order
         List<int> answerOptions = new List<int>(); 
@@ -53,5 +56,6 @@ public class QuestionSceneController : MonoBehaviour
             
             GameObject.Find("A" + (index + 1).ToString()).GetComponent<Answer>().setData(answers[i]["text"], answers[i]["isCorrect"]);
         }
+
     }
 }
