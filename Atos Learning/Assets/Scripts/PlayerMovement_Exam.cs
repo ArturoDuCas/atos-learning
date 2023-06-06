@@ -36,12 +36,24 @@ public class PlayerMovement_Exam : MonoBehaviour
     private bool isCorrect; 
 
     [SerializeField]
-    private GameObject confetti; 
+    private GameObject confetti;
+
+    private GameObject motivationPanel; 
+    private string[] motivationMessage = { "¡Los errores son oportunidades para crecer y mejorar!",
+    "¡Aprender es un proceso!", 
+    "¡El único error real es no intentarlo!", 
+    "¡Cada error es una lección valiosa!",
+    "¡Recuerda que las respuestas incorrectas te acercan más a las respuestas correctas!",
+    "¡El camino hacia el conocimiento está lleno de obstáculos!",
+    "¡Recuerda que eres capaz de más de lo que cree!",
+    "¡No dejes que los errores te hagan dudar de tu potencial!"};
 
     void Awake() {
         lastTouched = null; 
         lastTouchedColor = new Color(.165f, 1f, 0f);
+        motivationPanel = GameObject.Find("MotivationPanel");
     }
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -72,17 +84,23 @@ public class PlayerMovement_Exam : MonoBehaviour
         screenTop = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y;
         screenMiddleX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, 0)).x;
 
+        motivationPanel.SetActive(false);
+
     }
 
     IEnumerator evaluateAnswer() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         if (isCorrect) {
             GameObject confettiInstance = Instantiate(confetti);
             Vector2 confettiPos = new Vector2(screenMiddleX, screenTop + 1f);
             confettiInstance.transform.position = confettiPos;
             Store.player_correctAnswers++; 
         } else {
-            anim.SetBool("Incorrect", true);       
+            anim.SetBool("Incorrect", true);   
+            yield return new WaitForSeconds(1f);
+            int randomIndex = Random.Range(0, motivationMessage.Length);    
+            motivationPanel.SetActive(true);
+            motivationPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = motivationMessage[randomIndex];
         }
 
         yield return new WaitForSeconds(3f);
