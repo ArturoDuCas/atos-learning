@@ -101,7 +101,7 @@ public class LoginWebRequester : MonoBehaviour
 
                     // Obtener los examenes del usuario: 
                     int userId = Store.user_id;
-                    url = "https://atoslearningapi.azurewebsites.net/VideoGameExams?userId=" + userId.ToString(); 
+                    url = "https://atoslearningapi.azurewebsites.net/VideoGameExams/pending?userId=" + userId.ToString(); 
 
                     using(UnityWebRequest examsRequest = UnityWebRequest.Get(url)) {
                         yield return examsRequest.SendWebRequest(); 

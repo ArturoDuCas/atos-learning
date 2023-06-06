@@ -68,6 +68,13 @@ public class ExamCardScript : MonoBehaviour
         StartCoroutine(GetExamImage(examImage));
     }
 
+    public void showCard() {
+        gameObject.SetActive(true);
+    }
+
+    public void hideCard() {
+        gameObject.SetActive(false);
+    }
 
     IEnumerator GetExamImage(string examImage) {
         UnityWebRequest examSpriteRequest = UnityWebRequestTexture.GetTexture(examImage); 
