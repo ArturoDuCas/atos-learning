@@ -28,8 +28,10 @@ public static class Store
 
     public static JSONArray examQuestions; 
 
+    public static string player_startTime;
     public static int player_actualQuestion = 0; 
     public static int player_correctAnswers = 0;
     public static List<bool> player_answersHistory = new List<bool>();
+    public static List<int> player_answersID = new List<int>();
 
 }

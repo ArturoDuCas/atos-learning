@@ -270,8 +270,9 @@ GameObject:
   - component: {fileID: 37262010}
   - component: {fileID: 37262009}
   - component: {fileID: 37262008}
+  - component: {fileID: 37262011}
   m_Layer: 5
-  m_Name: HistorialButton
+  m_Name: MyInfoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +342,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 37262009}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 37262011}
+        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &37262009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +393,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37262006}
   m_CullTransparentMesh: 1
+--- !u!114 &37262011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c00118a831fbe8498e693bd598e2709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: MyInfoScene
+  transition: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
+  loadDelay: 0
 --- !u!1 &78359974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,6 +1931,7 @@ GameObject:
   - component: {fileID: 1014613127}
   - component: {fileID: 1014613126}
   - component: {fileID: 1014613125}
+  - component: {fileID: 1014613128}
   m_Layer: 5
   m_Name: LogOutButton
   m_TagString: Untagged
@@ -1974,7 +2003,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1014613126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1014613128}
+        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014613126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,6 +2054,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014613123}
   m_CullTransparentMesh: 1
+--- !u!114 &1014613128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014613123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c00118a831fbe8498e693bd598e2709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: LogInScene
+  transition: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
+  loadDelay: 0
 --- !u!1 &1065216599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,8 +2079,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1065216601}
   - component: {fileID: 1065216600}
-  - component: {fileID: 1065216603}
-  - component: {fileID: 1065216602}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -2099,45 +2153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1065216602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065216599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8424b86d51b6942bdb789c3b0b7fc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuPanel: {fileID: 441911299}
---- !u!61 &1065216603
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065216599}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.75, y: 5.45}
-    newSize: {x: 9.75, y: 5.45}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 9.75, y: 5.45}
-  m_EdgeRadius: 0
 --- !u!1 &1159740058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3453,7 +3468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Historial
+  m_text: 'My Info '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 131bbd819f100d043b742d34af45f3fc, type: 2}
   m_sharedMaterial: {fileID: 2433658103117971190, guid: 131bbd819f100d043b742d34af45f3fc, type: 2}

@@ -34,6 +34,7 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     private bool justFinished = true;
     private bool isCorrect; 
+    private int idAnswer; 
 
     [SerializeField]
     private GameObject confetti;
@@ -58,7 +59,7 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(lastTouched == collision.collider) { // Si esta tocando el mismo sulo 
+        if(lastTouched == collision.collider) { // Si esta tocando el mismo suelo 
             return; 
         } else {
             if (lastTouched != null) {
@@ -68,7 +69,7 @@ public class PlayerMovement_Exam : MonoBehaviour
             lastTouched.GetComponent<Renderer>().material.color = lastTouchedColor;
             GameObject answerObject = lastTouched.gameObject.transform.parent.gameObject;
             isCorrect = answerObject.GetComponent<Answer>().isCorrect;
-            // isCorrect = lastTouched.GetComponent<Answer>().isCorrect;
+            idAnswer = answerObject.GetComponent<Answer>().id;
         }
     }
     // Start is called before the first frame update
@@ -118,6 +119,8 @@ public class PlayerMovement_Exam : MonoBehaviour
             anim.SetBool("Running", false);
             justFinished = false;
             Store.player_answersHistory.Add(isCorrect);
+            Debug.Log("ID ANSWER: " + idAnswer); 
+            Store.player_answersID.Add(idAnswer); 
             StartCoroutine(evaluateAnswer()); 
             return; 
         } else if (countDownComponent.currentTime == 0f && !justFinished) {

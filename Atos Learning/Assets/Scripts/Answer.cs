@@ -7,16 +7,18 @@ public class Answer : MonoBehaviour
 {
     private string answerText;
     public bool isCorrect;
+    public int id; 
 
     GameObject answerContainerObject; 
     GameObject answerTextObject;
 
 
-    public void setData(string _answerText, bool _isCorrect) {
+    public void setData(string _answerText, bool _isCorrect, string _id) {
         answerContainerObject = transform.Find("AnswerContainer").gameObject;
         answerTextObject = answerContainerObject.transform.Find("AnswerText").gameObject;
         answerText = _answerText;
         isCorrect = _isCorrect;
+        id = int.Parse(_id); 
 
         setAnswerText();
     }

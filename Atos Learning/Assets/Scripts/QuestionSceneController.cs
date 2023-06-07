@@ -53,8 +53,7 @@ public class QuestionSceneController : MonoBehaviour
             int answerOptionIndex = random.Next(0, answerOptions.Count);
             int index = answerOptions[answerOptionIndex];
             answerOptions.RemoveAt(answerOptionIndex);
-            
-            GameObject.Find("A" + (index + 1).ToString()).GetComponent<Answer>().setData(answers[i]["text"], answers[i]["isCorrect"]);
+            GameObject.Find("A" + (index + 1).ToString()).GetComponent<Answer>().setData(answers[i]["text"], answers[i]["isCorrect"], answers[i]["id"]);
         }
 
     }

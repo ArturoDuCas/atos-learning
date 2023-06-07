@@ -1,3 +1,4 @@
+using System; 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +45,7 @@ public class DetallesExamen : MonoBehaviour
     }
 
     void Start() {
-        loadingPanel.SetActive(false);
+        loadingPanel.SetActive(false);;
     }
 
     IEnumerator GetImage(string url) {
@@ -64,6 +65,8 @@ public class DetallesExamen : MonoBehaviour
 
     public void OnPlayButton() {
         StartCoroutine(GetExamQuestions(Store.actualExam_id)); 
+        // 2023-05-31T23:59:59
+        Store.player_startTime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
         loadingPanel.SetActive(true);
     }
 
