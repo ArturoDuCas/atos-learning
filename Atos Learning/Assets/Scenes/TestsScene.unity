@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 479518890}
-  limitDistance: 50
+  limitDistance: 500
   dropSignScript: {fileID: 4977395806615026110, guid: e97de3ab09ff09b40991dc0d4941fb0c, type: 3}
   finishedCollectionTime: 0
 --- !u!1 &1160808281

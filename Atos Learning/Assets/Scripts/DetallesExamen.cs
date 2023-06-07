@@ -64,10 +64,13 @@ public class DetallesExamen : MonoBehaviour
 
 
     public void OnPlayButton() {
-        StartCoroutine(GetExamQuestions(Store.actualExam_id)); 
-        // 2023-05-31T23:59:59
         Store.player_startTime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
         loadingPanel.SetActive(true);
+        Store.player_actualQuestion = 0; 
+        Store.player_answersHistory = new List<bool>();
+        Store.player_answersID = new List<int>();
+        Store.player_correctAnswers = 0; 
+        StartCoroutine(GetExamQuestions(Store.actualExam_id)); 
     }
 
     IEnumerator GetExamQuestions(int examID) {

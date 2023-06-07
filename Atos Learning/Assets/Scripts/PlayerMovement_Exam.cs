@@ -91,11 +91,13 @@ public class PlayerMovement_Exam : MonoBehaviour
 
     IEnumerator evaluateAnswer() {
         yield return new WaitForSeconds(1f);
+        Store.player_answersHistory.Add(isCorrect);
         if (isCorrect) {
             GameObject confettiInstance = Instantiate(confetti);
             Vector2 confettiPos = new Vector2(screenMiddleX, screenTop + 1f);
             confettiInstance.transform.position = confettiPos;
             Store.player_correctAnswers++; 
+
         } else {
             anim.SetBool("Incorrect", true);   
             yield return new WaitForSeconds(1f);
@@ -118,8 +120,6 @@ public class PlayerMovement_Exam : MonoBehaviour
         if(countDownComponent.currentTime   == 0f && justFinished) {
             anim.SetBool("Running", false);
             justFinished = false;
-            Store.player_answersHistory.Add(isCorrect);
-            Debug.Log("ID ANSWER: " + idAnswer); 
             Store.player_answersID.Add(idAnswer); 
             StartCoroutine(evaluateAnswer()); 
             return; 
