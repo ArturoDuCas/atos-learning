@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class CountDown : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class CountDown : MonoBehaviour
 
     public int seconds; 
 
+    private int coinCount;
+
     private void Start()
     {
+        Coin.OnCoinCollected += HandleCoinCollected;
     }
 
     private void Update()
@@ -38,6 +42,23 @@ public class CountDown : MonoBehaviour
     public void setTime(float time) {
         countdownTime = time;
         currentTime = countdownTime;
+    }
+
+    private void HandleCoinCollected()
+    {
+        coinCount++;
+
+        // Check if the coin count reaches 5
+        if (coinCount == 5)
+        {
+            IncreaseTime(10f);
+            coinCount = 0;
+        }
+    }
+
+    private void IncreaseTime(float amount)
+    {
+        currentTime += amount;
     }
 }
 

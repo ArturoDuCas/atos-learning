@@ -44,6 +44,18 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask; 
     public LayerMask obstacleLayerMask;
 
+    private int coinCount;
+
+    public void IncreaseCoinCount()
+    {
+        coinCount++;
+    }
+
+    public void ResetCoinCount()
+    {
+        coinCount = 0;
+    }
+
 
     void Start() { 
         playerAnimator = GetComponent<Animator>();
