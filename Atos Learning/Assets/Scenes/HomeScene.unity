@@ -408,6 +408,7 @@ MonoBehaviour:
   scene: MyInfoScene
   transition: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   loadDelay: 0
+  loadingPanel: {fileID: 0}
 --- !u!1 &78359974
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   examCardPrefab: {fileID: 3139253458389197648, guid: 82c76ead274ae08409fb518daba9cd09, type: 3}
+  pastExamCardPrefab: {fileID: 5067255923422822499, guid: 55fea6488ed68a14382b717d3a8400ab, type: 3}
 --- !u!1 &108213356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,6 +2071,7 @@ MonoBehaviour:
   scene: LogInScene
   transition: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   loadDelay: 0
+  loadingPanel: {fileID: 0}
 --- !u!1 &1065216599
 GameObject:
   m_ObjectHideFlags: 0

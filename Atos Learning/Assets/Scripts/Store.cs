@@ -16,6 +16,7 @@ public static class Store
     public static bool isTeacher; 
 
     public static JSONArray exams;
+    public static JSONArray submittedExams;
 
     public static string actualExam_subject = "Matematicas"; 
     public static string actualExam_dueDate = "2021-05-20T00:00:00";

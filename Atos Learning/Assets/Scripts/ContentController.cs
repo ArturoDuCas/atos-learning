@@ -37,9 +37,7 @@ public class ContentController : MonoBehaviour
             examCard.GetComponent<ExamCardScript>().setProps(examName, examDescription, examImage, examSubject, teacherName, dueDate, questionCount, examId);
             examCard.GetComponent<ExamCardScript>().updateCardData();
         }
-
-        // Transform firstExamCard = transform.GetChild(0);
-        // GameObject firstExamCardGameObject = firstExamCard.gameObject;
-        // firstExamCardGameObject.SetActive(false);
     }
+
+    
 }

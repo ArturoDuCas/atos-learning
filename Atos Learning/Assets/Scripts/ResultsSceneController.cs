@@ -55,6 +55,7 @@ public class ResultsSceneController : MonoBehaviour
                     Debug.Log(request.error);
                     yield break;
                 } else {
+                    Store.user_totalScore += (int)points;
                     Debug.Log("Results sent successfully");
                 }
             }
