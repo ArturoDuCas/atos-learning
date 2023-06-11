@@ -91,6 +91,7 @@ public class DetallesExamen : MonoBehaviour
                 }
             }
         }
+        BackgroundMusicController.instance.PlayBackgroundMusic(BackgroundMusicController.instance.inGameBackgroundMusic); 
         TransitionManager.Instance().Transition("TestsScene", transition, loadDelay); 
     }
 }

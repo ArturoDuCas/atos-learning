@@ -11,6 +11,7 @@ public class QuestionSceneController : MonoBehaviour
     private JSONArray answers; 
     private int timeLimit; 
 
+
     void Awake() {
         getQuestion(); 
         setData(); 

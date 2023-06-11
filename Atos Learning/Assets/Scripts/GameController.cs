@@ -25,8 +25,9 @@ public class GameController : MonoBehaviour
     private void Awake() {
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y;
         screenRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
-    
+
     }
+    
     void Start()
     {
         player.gravity = -25f; 

@@ -14,8 +14,10 @@ public class ResultsSceneController : MonoBehaviour
     
     [SerializeField]
     private GameObject loadingPanel;
+
     
     void Awake() {
+        BackgroundMusicController.instance.PlayBackgroundMusic(BackgroundMusicController.instance.defaultBackgroundMusic); 
         points = (float)Store.player_correctAnswers / Store.actualExam_questionCount * 100;
         points = Math.Round(points, 1);
         // pointsTextObject.GetComponent<TMPro.TextMeshProUGUI>().text = (Store.player_correctAnswers / Store.actualExam_questionCount * 100).ToString + "%";

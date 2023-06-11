@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class BackgroundMusicController : MonoBehaviour
 {
-    private static BackgroundMusicController instance;
+    public static BackgroundMusicController instance;
+    public AudioClip defaultBackgroundMusic; 
+    public AudioClip inGameBackgroundMusic;
+
+    
+
+    private AudioSource audioSource;
+
 
     void Awake()
     {
@@ -17,5 +24,19 @@ public class BackgroundMusicController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        audioSource = GetComponent<AudioSource>();
+
     }
+
+    void Start() {
+        PlayBackgroundMusic(defaultBackgroundMusic);
+    }
+
+    public void PlayBackgroundMusic(AudioClip clip) {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    
 }

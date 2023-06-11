@@ -46,8 +46,15 @@ public class PlayerMovement_Exam : MonoBehaviour
     "¡Cada error es una lección valiosa!",
     "¡Recuerda que las respuestas incorrectas te acercan más a las respuestas correctas!",
     "¡El camino hacia el conocimiento está lleno de obstáculos!",
-    "¡Recuerda que eres capaz de más de lo que cree!",
+    "¡Recuerda que eres capaz de más de lo que crees!",
     "¡No dejes que los errores te hagan dudar de tu potencial!"};
+
+    [SerializeField]
+    private GameObject redoblesSoundController;
+    [SerializeField] 
+    private GameObject correctSoundController;
+    [SerializeField]
+    private GameObject incorrectSoundController;
 
     void Awake() {
         lastTouched = null; 
@@ -90,23 +97,28 @@ public class PlayerMovement_Exam : MonoBehaviour
     }
 
     IEnumerator evaluateAnswer() {
-        yield return new WaitForSeconds(1f);
+        redoblesSoundController.GetComponent<AudioSource>().Play(); 
+        yield return new WaitForSeconds(3.5f);
+        redoblesSoundController.GetComponent<AudioSource>().Stop();
+
         Store.player_answersHistory.Add(isCorrect);
         if (isCorrect) {
             GameObject confettiInstance = Instantiate(confetti);
+            correctSoundController.GetComponent<AudioSource>().Play();
             Vector2 confettiPos = new Vector2(screenMiddleX, screenTop + 1f);
             confettiInstance.transform.position = confettiPos;
             Store.player_correctAnswers++; 
 
         } else {
-            anim.SetBool("Incorrect", true);   
+            incorrectSoundController.GetComponent<AudioSource>().Play(); 
+            anim.SetBool("Incorrect", true);  
             yield return new WaitForSeconds(1f);
             int randomIndex = Random.Range(0, motivationMessage.Length);    
             motivationPanel.SetActive(true);
             motivationPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = motivationMessage[randomIndex];
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         if (Store.examQuestions.Count == 0) { // Si ya contesto todas las preguntas
             TransitionManager.Instance().Transition("ResultsScene", transitionResult, loadDelay); 
         } else {

@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
 
     private int coinCount;
 
+    public GameObject coinSoundSource; 
+    public GameObject hurtSoundSource;
+    public GameObject jumpSoundSource;
+    public GameObject runningSoundSource;
+
     public void IncreaseCoinCount()
     {
         coinCount++;
@@ -72,7 +77,9 @@ public class PlayerMovement : MonoBehaviour
 
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         if (isGrounded || groundDistance <= jumpGroundThreshold) {
-            if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump  
+            if (Input.GetKeyDown(KeyCode.Space)) { // Is holding a jump 
+                runningSoundSource.GetComponent<AudioSource>().Stop(); 
+                jumpSoundSource.GetComponent<AudioSource>().Play();
                 isGrounded = false;
                 velocity.y = jumpVelocity;
                 isHoldingJump = true;
@@ -130,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
                 Ground ground = hit.collider.GetComponent<Ground>();
                 if (ground != null) {
                     if(pos.y >= ground.groundHeight) {
+                        runningSoundSource.GetComponent<AudioSource>().Play();
                         groundHeight = ground.groundHeight;
                         velocity.y = 0.0f;
                         pos.y = groundHeight;
@@ -145,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
                 Ground ground = wallHit.collider.GetComponent<Ground>();
                 if (ground != null) {
                     if (pos.y < ground.groundHeight) {
+                        hurtSoundSource.GetComponent<AudioSource>().Play();
                         velocity.x = 0.0f;
                     }
                 }
@@ -170,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
             
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
             if(hit.collider == null) {
+                runningSoundSource.GetComponent<AudioSource>().Stop();
                 isGrounded = false; 
                 }
         }
@@ -214,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void hitEnemy(RaycastHit2D hit) {
+        hurtSoundSource.GetComponent<AudioSource>().Play();
         CapsuleCollider2D enemyCollider = hit.collider.GetComponent<CapsuleCollider2D>();
         Animator enemyAnimator = hit.collider.GetComponent<Animator>();
         Vector3 enemyScale = hit.collider.transform.localScale;
@@ -284,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     void collectCoin(RaycastHit2D hit) {
+        coinSoundSource.GetComponent<AudioSource>().Play();
         Destroy(hit.collider.gameObject);
         coins += 1;
         coinCountText.text = coins.ToString();
