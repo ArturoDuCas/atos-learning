@@ -64,7 +64,6 @@ public class DetallesExamen : MonoBehaviour
 
 
     public void OnPlayButton() {
-        Store.player_startTime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
         loadingPanel.SetActive(true);
         Store.player_actualQuestion = 0; 
         Store.player_answersHistory = new List<bool>();

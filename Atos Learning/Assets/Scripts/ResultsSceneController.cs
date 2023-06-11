@@ -24,6 +24,7 @@ public class ResultsSceneController : MonoBehaviour
     }
     void Start()
     {
+        Store.player_endTime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
         StartCoroutine(SendResults()); 
     }
 
@@ -36,9 +37,7 @@ public class ResultsSceneController : MonoBehaviour
         }
         // form.AddField("answersIds", string.Join(",", Store.player_answersID));
         form.AddField("score", points.ToString());
-        form.AddField("startDateTime", Store.player_startTime);
-
-        Debug.Log("answersIds: " + string.Join(",", Store.player_answersID));
+        form.AddField("endDateTime", Store.player_endTime);
 
 
         string url = "https://atoslearningapi.azurewebsites.net/api/Exams"; 
