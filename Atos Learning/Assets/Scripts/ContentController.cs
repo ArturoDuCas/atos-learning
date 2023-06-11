@@ -8,7 +8,7 @@ public class ContentController : MonoBehaviour
     public GameObject examCardPrefab;
 
     void Awake() {
-        generateExamList(); 
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class ContentController : MonoBehaviour
         
     }
 
-    private void generateExamList() {
+    public void generateExamList() {
         foreach(JSONNode exam in Store.exams) {
             string examName = exam["title"]; 
             string examDescription = exam["description"]; 
