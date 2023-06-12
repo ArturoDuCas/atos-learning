@@ -9,13 +9,14 @@ public class SearchBarController : MonoBehaviour
     [SerializeField]
     private GameObject searchInputObject;
     private string searchInput; 
-    GameObject[] cards; 
+    public GameObject[] cards; 
 
-    private GameObject NotFoundPanel; 
+    GameObject NotFoundPanel; 
     private bool showNotFoundPanel;
 
+    private bool firstSearch = true; 
+
     void Awake() {
-        cards = GameObject.FindGameObjectsWithTag("ExamCard");
         NotFoundPanel = GameObject.Find("NotFoundPanel");
     }
 
@@ -30,9 +31,16 @@ public class SearchBarController : MonoBehaviour
 
 
     private void makeSearch() {
+        if (firstSearch) {
+            cards = GameObject.FindGameObjectsWithTag("ExamCard");
+            firstSearch = false; 
+        }
+
         showNotFoundPanel = true; 
+        // bool emptySearchInput = string.IsNullOrEmpty(searchInput);
         foreach(GameObject card in cards) {
             string cardTitle = card.transform.Find("ExamTitle").gameObject.GetComponent<TextMeshProUGUI>().text.ToLower();
+            Debug.Log(cardTitle); 
             if (cardTitle.Contains(searchInput)) {
                 showNotFoundPanel = false;
                 card.SetActive(true);
@@ -42,6 +50,7 @@ public class SearchBarController : MonoBehaviour
         }
         NotFoundPanel.SetActive(showNotFoundPanel);
     }
+
 
     // Start is called before the first frame update
     public void Search() {
