@@ -102,17 +102,17 @@ public class PlayerMovement_Exam : MonoBehaviour
         motivationPanel.SetActive(false);
         //hola
 
-        if (Store.player_coinCount >= 20) {
+        if (Store.player_coinCount >= 15) {
             extraTimePanel.SetActive(true); 
             extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+8";
             
         }
-        else if (Store.player_coinCount >= 15) {
+        else if (Store.player_coinCount >= 10) {
             extraTimePanel.SetActive(true);
             extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+5"; 
         }
 
-        else if (Store.player_coinCount >= 2) {
+        else if (Store.player_coinCount >= 5) {
             extraTimePanel.SetActive(true); 
             extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+3";
         }

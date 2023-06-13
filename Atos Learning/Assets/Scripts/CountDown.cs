@@ -38,13 +38,13 @@ public class CountDown : MonoBehaviour
     }
 
     public void setTime(float time) {
-        if (Store.player_coinCount >= 20){
+        if (Store.player_coinCount >= 15){
             time += 8f;
         }
-        else if (Store.player_coinCount >= 15) {
+        else if (Store.player_coinCount >= 10) {
             time += 5f;
         }
-        else if (Store.player_coinCount >= 10) {
+        else if (Store.player_coinCount >= 5) {
             time += 3f;
         }
         countdownTime = time;
