@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EasyTransition; 
+using TMPro;
 
 public class PlayerMovement_Exam : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class PlayerMovement_Exam : MonoBehaviour
     "¡No dejes que los errores te hagan dudar de tu potencial!"};
 
     [SerializeField]
+    private GameObject extraTimePanel;
+
+
+    [SerializeField]
     private GameObject redoblesSoundController;
     [SerializeField] 
     private GameObject correctSoundController;
@@ -60,6 +65,8 @@ public class PlayerMovement_Exam : MonoBehaviour
         lastTouched = null; 
         lastTouchedColor = new Color(.165f, 1f, 0f);
         motivationPanel = GameObject.Find("MotivationPanel");
+        extraTimePanel = GameObject.Find("ExtraTimePanel");
+        extraTimePanel.SetActive(false);
     }
 
 
@@ -93,8 +100,25 @@ public class PlayerMovement_Exam : MonoBehaviour
         screenMiddleX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, 0)).x;
 
         motivationPanel.SetActive(false);
+        //hola
 
+        if (Store.player_coinCount >= 20) {
+            extraTimePanel.SetActive(true); 
+            extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+8";
+            
+        }
+        else if (Store.player_coinCount >= 15) {
+            extraTimePanel.SetActive(true);
+            extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+5"; 
+        }
+
+        else if (Store.player_coinCount >= 2) {
+            extraTimePanel.SetActive(true); 
+            extraTimePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+3";
+        }
     }
+
+
 
     IEnumerator evaluateAnswer() {
         redoblesSoundController.GetComponent<AudioSource>().Play(); 

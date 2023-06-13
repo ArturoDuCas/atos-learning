@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
             }
 
             if (player.transform.position.y < screenBottom - 2f) {
+                Store.player_coinCount = player.coins;
                 SceneManager.LoadScene("QuestionScene");
             }
         }

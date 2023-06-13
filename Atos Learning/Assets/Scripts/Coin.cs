@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
 
 public class Coin : MonoBehaviour
 {
 
-    public static event Action OnCoinCollected;
 
     private PlayerMovement player; 
     private float screenLeft;
@@ -40,18 +39,6 @@ public class Coin : MonoBehaviour
         transform.position = pos;  
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            // Increase the coin count
-            player.IncreaseCoinCount();
+    
 
-            // Trigger the coin collected event
-            OnCoinCollected?.Invoke();
-
-            // Destroy the coin object
-            Destroy(gameObject);
-        }
-    }
 }

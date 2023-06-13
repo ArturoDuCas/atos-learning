@@ -11,11 +11,9 @@ public class CountDown : MonoBehaviour
 
     public int seconds; 
 
-    private int coinCount;
-
     private void Start()
     {
-        Coin.OnCoinCollected += HandleCoinCollected;
+        
     }
 
     private void Update()
@@ -40,25 +38,18 @@ public class CountDown : MonoBehaviour
     }
 
     public void setTime(float time) {
+        if (Store.player_coinCount >= 20){
+            time += 8f;
+        }
+        else if (Store.player_coinCount >= 15) {
+            time += 5f;
+        }
+        else if (Store.player_coinCount >= 10) {
+            time += 3f;
+        }
         countdownTime = time;
         currentTime = countdownTime;
     }
 
-    private void HandleCoinCollected()
-    {
-        coinCount++;
-
-        // Check if the coin count reaches 5
-        if (coinCount == 5)
-        {
-            IncreaseTime(10f);
-            coinCount = 0;
-        }
-    }
-
-    private void IncreaseTime(float amount)
-    {
-        currentTime += amount;
-    }
 }
 

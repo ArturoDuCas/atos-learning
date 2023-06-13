@@ -26,6 +26,8 @@ public static class Store
     public static int actualExam_questionCount = 10; 
     public static int actualExam_id = 10;
 
+    public static int player_coinCount;
+
 
     public static JSONArray examQuestions; 
 

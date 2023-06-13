@@ -56,10 +56,7 @@ public class PlayerMovement : MonoBehaviour
         coinCount++;
     }
 
-    public void ResetCoinCount()
-    {
-        coinCount = 0;
-    }
+
 
 
     void Start() { 
