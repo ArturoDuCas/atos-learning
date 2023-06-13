@@ -27,9 +27,9 @@ public class ContentPastController : MonoBehaviour
             string dueDate = exam["dueDate"];
             int questionCount = exam["questionsCount"]; 
             int examId = exam["id"];
-            // TODO quitar el hardcode
-            string examScore = "60.5";
-            string realizationDate = "2021-05-20T00:00:00";
+            // all take out the hardcode
+            string examScore = exam["score"];
+            string realizationDate = exam["endDateTime"];
 
 
             GameObject examCard = Instantiate(pastExamCardPrefab, transform);
