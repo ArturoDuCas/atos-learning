@@ -2494,7 +2494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBackgroundMusic: {fileID: 8300000, guid: 2cebe5ef59f447d4d803665e3ecf1a2f, type: 3}
-  inGameBackgroundMusic: {fileID: 8300000, guid: 613e0cf55da044f40ad43dc3c590124b, type: 3}
+  inGameBackgroundMusic: {fileID: 0}
 --- !u!82 &1475911544
 AudioSource:
   m_ObjectHideFlags: 0
