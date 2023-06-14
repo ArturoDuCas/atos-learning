@@ -16,7 +16,7 @@ public class HomeSceneWebRequest : MonoBehaviour
     void Awake()
     {
         hiUserText = GameObject.Find("HiUser").GetComponent<TextMeshProUGUI>();
-        hiUserText.text = "Hola, " + Store.user_nickname;
+        hiUserText.text = "Hi, " + Store.user_nickname;
         StartCoroutine(getExamListRequest()); 
     } 
     // Start is called before the first frame update
