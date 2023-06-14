@@ -28,7 +28,7 @@ public class QuestionSceneController : MonoBehaviour
         if (questionData["timeLimit"] > 0) {
             timeLimit = questionData["timeLimit"];
         } else {
-            timeLimit = 15;
+            timeLimit = 10;
         }
 
         // Remove question from examQuestions
