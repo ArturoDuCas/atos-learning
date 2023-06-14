@@ -24,7 +24,12 @@ public class QuestionSceneController : MonoBehaviour
 
         question = questionData["title"];
         answers = questionData["answers"].AsArray;
-        timeLimit = questionData["timeLimit"];
+
+        if (questionData["timeLimit"] > 0) {
+            timeLimit = questionData["timeLimit"];
+        } else {
+            timeLimit = 15;
+        }
 
         // Remove question from examQuestions
         JSONArray updatedArray = new JSONArray();
