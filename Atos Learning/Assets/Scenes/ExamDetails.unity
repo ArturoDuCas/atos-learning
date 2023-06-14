@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -191}
+  m_AnchoredPosition: {x: 0, y: -190.99998}
   m_SizeDelta: {x: -600, y: -435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42897458
@@ -784,6 +784,7 @@ MonoBehaviour:
   scene: HomeScene
   transition: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   loadDelay: 0
+  loadingPanel: {fileID: 0}
 --- !u!114 &726615816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,8 +1024,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -168, y: 162}
-  m_SizeDelta: {x: 406.11, y: 50}
+  m_AnchoredPosition: {x: -112.53, y: 162}
+  m_SizeDelta: {x: 517.05, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894121622
 MonoBehaviour:
@@ -1046,7 +1047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DETALLES EXAMEN
+  m_text: DETALLES DEL EXAMEN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 131bbd819f100d043b742d34af45f3fc, type: 2}
   m_sharedMaterial: {fileID: 2433658103117971190, guid: 131bbd819f100d043b742d34af45f3fc, type: 2}

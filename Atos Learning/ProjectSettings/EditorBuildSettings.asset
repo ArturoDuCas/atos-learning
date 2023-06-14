@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MyInfoScene.unity
     guid: d7ff8e1f4425f2c4fbc5cf06c2c80d4d
+  - enabled: 1
+    path: Assets/Scenes/Privacy.unity
+    guid: 574387fab7243284e8c6e85cee7a5b03
   m_configObjects: {}
